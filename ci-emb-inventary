@@ -1,0 +1,162 @@
+AIO
+SIC
+SOC
+VADDON
+
+BUILD_SERVER_DOCKER:
+	-> in : https://github.com/xofym/BE-CI-Tools
+	-> out : docker image $DOCKER_REGISTRY/$DOCKER_LIBRARY_EMBEDDED_SP/jenkins_slave_fw_builder
+	-> script : jenkins_pipelines/docker_fw_build/Jenkinsfile
+	-> triggers : pushes on branch master on files :
+					- jenkins_pipelines/docker_fw_build/.*
+					- jenkins_slave_builder/.*
+
+**************************************************************************
+DOORLOCK_FW:
+	-> in : https://github.com/xofym/doorlock_fw
+	-> out : firmware
+	-> script : ci/Jenkinsfile
+	-> triggers : nightly
+
+doorlock_sdk:
+	-> CheckBuildOnPR:
+		-> in : https://github.com/xofym/doorlock_fw
+		-> script : ci/Jenkinsfile.build
+		-> triggers :	Build branch reclaiming PR
+						scan every minutes
+		NO WEBHOOKS
+	
+	->CheckCkangFormatOnPR:
+		-> in : https://github.com/xofym/doorlock_fw
+		-> script : ci/Jenkinsfile.clang-format
+		-> triggers :	Build merged PR
+						scan every minutes
+		NO WEBHOOKS
+
+**************************************************************************
+DOORLOCK_GATEWAY_ESPRESSIF_FW:
+	-> in : https://github.com/xofym/doorlock_gateway_espressif_fw
+	-> out : firmware
+	-> script : ci/Jenkinsfile
+	-> triggers : nightly
+
+doorlock_gateway_espressif_sdk:
+	-> CheckBuildOnPR:
+		-> in : https://github.com/xofym/doorlock_gateway_espressif_sdk
+		-> script : ci/Jenkinsfile.build
+		-> triggers :	Build branch reclaiming PR
+						scan every minutes
+		NO WEBHOOKS
+	
+	->CheckCkangFormatOnPR:
+		-> in : https://github.com/xofym/doorlock_gateway_espressif_sdk
+		-> script : ci/Jenkinsfile.clang-format
+		-> triggers :	Build merged PR
+						scan every minutes
+		NO WEBHOOKS
+
+**************************************************************************
+DOORLOCK_GATEWAY_NORDIC_FW:
+	-> in : https://github.com/xofym/doorlock_gateway_nordic_fw
+	-> out : firmware
+	-> script : ci/Jenkinsfile
+	-> triggers : nightly
+	
+doorlock_gateway_nordic_sdk:
+	-> CheckBuildOnPR:
+		-> in : https://github.com/xofym/doorlock_gateway_nordic_sdk
+		-> script : ci/Jenkinsfile.build
+		-> triggers :	Build branch reclaiming PR
+						scan every minutes
+		NO WEBHOOKS
+	
+	->CheckCkangFormatOnPR:
+		-> in : https://github.com/xofym/doorlock_gateway_nordic_sdk
+		-> script : ci/Jenkinsfile.clang-format
+		-> triggers :	Build merged PR
+						scan every minutes
+		NO WEBHOOKS
+
+**************************************************************************
+DOORLOCK_READER_FW:
+
+doorlock_reader_sdk:
+	-> CheckBuildOnPR:
+		-> in : https://github.com/xofym/doorlock_gateway_espressif_sdk
+		-> script : ci/Jenkinsfile.build
+		-> triggers :	Build branch reclaiming PR
+						scan every minutes
+		NO WEBHOOKS
+
+
+INTELLITAG_FW:
+
+intellitag_pr:
+	NO WEBHOOKS
+
+LINK1_FW:
+	-> script jenkins_pipelines/link1_fw/Jenkinsfile
+
+Link1App:
+	-> CheckBuildOnPR
+	-> CheckUTOnPR
+	NO WEBHOOKS
+	
+LINK2_PREMIUM_FW:
+	-> jenkins_pipelines/link2_premium_fw/Jenkinsfile
+
+link2_premium_testing_apps:
+	-> jenkins_pipelines/link2_premium_testing_apps/Jenkinsfile
+
+Link2PremiumApp:
+	-> CheckBuildOnPR
+	-> CheckUTOnPR
+	NO WEBHOOKS
+
+MSC-FW:
+
+san :
+	-> CheckBuildOnPrForLinkPremium
+	-> CheckClangFormatOnPr
+	-> CheckTUOnPRForLinkPremium
+
+sandbox:
+	-> sp_data_model
+	-> V_ADDON_DOCKER_TEST
+
+SHA_DEVICE_PLATFORM:
+	
+
+sha_device_platform_pr
+
+SM2P_INTELLITAG_FW
+
+sm2p_intellitag_fw
+
+sm2p_sensors_sw
+
+sp_automation
+
+sp_cam
+
+sp_data_model
+
+sp_fw_hal
+
+sp_security_system
+
+sp_webrtc
+
+UT
+
+wiced_common_components
+
+WICED_SDK:
+	jenkins_pipelines/wiced_sdk/Jenkinsfile
+
+
+
+/**********************************
+sp_cam
+	CheckBuildOnPrForCameras
+	CheckBuildOnPRUnitsTests

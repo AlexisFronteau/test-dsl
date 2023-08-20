@@ -1,0 +1,64 @@
+{
+	"multibranch": {
+		"checkBuildOnPR" : [
+			{
+				"path" : "AIO",
+				"repo" : "aio_fw"
+			},
+			{
+				"path" : "AIO",
+				"repo" : "aio_app"
+			},
+			{
+				"path" : "SIC",
+				"repo" : "sic_fw"
+			},
+			{
+				"path" : "SIC",
+				"repo" : "sic_app"
+			},
+			{
+				"path" : "SOC",
+				"repo" : "aio_fw"
+			},
+			{
+				"path" : "SOC",
+				"repo" : "aio_app"
+			},
+			{
+				"path" : "VADDON",
+				"repo" : "aio_fw"
+			},
+			{
+				"path" : "VADDON",
+				"repo" : "vaddon_app"
+			},
+		],
+		"checkClangFormatOnPR" : [
+			{
+				"path" : "INTELLITAG",
+				"repo" : "intellitag_fw"
+			},
+			{
+				"path" : "INTELLITAG",
+				"repo" : "sha_devices_libraries"
+			},
+			{
+				"path" : "LINK",
+				"repo" : "link2_premium_app"
+			},
+			{
+				"path" : "LINK",
+				"repo" : "somfy-area-network"
+			},
+			{
+				"path" : "LIBS",
+				"repo" : "sp_automation"
+			},
+			{
+				"path" : "LIBS",
+				"repo" : "sp_webrtc"
+			}
+		]
+	}
+}
