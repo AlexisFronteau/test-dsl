@@ -1,5 +1,7 @@
-import utilities.CheckClangFormatOnPRMultibranchJobBuilder
+//import utilities.CheckClangFormatOnPRMultibranchJobBuilder
 import groovy.json.JsonSlurper
+
+evaluate(new File("./utilities/builder_multibranchCheckClangFormatOnPR.groovy"))
 
 def projects = new JsonSlurper().parseText(readFileFromWorkspace('projectDescription.json'))
 def base_dir = 'BE/EMB'
