@@ -1,4 +1,5 @@
 package utilities
+import javaposse.jobdsl.dsl.DslFactory
 
 /**
  * Generates jobs that check if code is correclty formatted
