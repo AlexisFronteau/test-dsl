@@ -5,11 +5,13 @@ def projects = new JsonSlurper().parseText(readFileFromWorkspace('projectDescrip
 def base_dir = 'BE/EMB'
 
 folder('BE')
-folder('EMB')
+folder('BE/EMB')
 
 projects.multibranch.checkClangFormatOnPR.each { multibranch ->
-	def path = base_dir + '/' + multibranch.path
+	def path = base_dir 
+	if (multibranch.path) {
+		path += ('/' + multibranch.path)
+	}
 	def repo_name = multibranch.repo
-
 	CheckClangFormatOnPRMultibranchJobBuilder.multibranch(this, path, repo_name)
 }
