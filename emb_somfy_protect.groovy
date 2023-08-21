@@ -13,5 +13,6 @@ projects.multibranch.checkClangFormatOnPR.each { multibranch ->
 		path += ('/' + multibranch.path)
 	}
 	def repo_name = multibranch.repo
-	CheckClangFormatOnPRMultibranchJobBuilder.multibranch(this, path, repo_name)
+	
+	//CheckClangFormatOnPRMultibranchJobBuilder.multibranch(this, path, repo_name)
 }
