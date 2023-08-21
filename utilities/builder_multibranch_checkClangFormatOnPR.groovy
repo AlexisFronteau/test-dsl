@@ -5,7 +5,7 @@ package utilities
  */
 class CheckClangFormatOnPRMultibranchJobBuilder {
   static void multibranch(dslFactory, dirpath, repo_name) {
-    def job = dslFactory.pipelineJob()
+    def job = dslFactory.multibranchPipelineJob()
     job.with {
       folder(dirpath)
       

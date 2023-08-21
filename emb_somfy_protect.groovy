@@ -14,5 +14,5 @@ projects.multibranch.checkClangFormatOnPR.each { multibranch ->
 	}
 	def repo_name = multibranch.repo
 	
-	//CheckClangFormatOnPRMultibranchJobBuilder.multibranch(this, path, repo_name)
+	CheckClangFormatOnPRMultibranchJobBuilder.multibranch(this, path, repo_name)
 }
