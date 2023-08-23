@@ -10,7 +10,7 @@ public enum eMutlibranchType {
   UNKNOWN
 }
 
-class CheckClangFormatOnPRMultibranchJobBuilder {
+class MultibranchJobBuilder {
   static void multibranch(dslFactory, type, dirpath, repo_name) {
 
     dslFactory.folder(dirpath)
