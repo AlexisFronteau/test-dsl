@@ -1,4 +1,4 @@
-//import utilities.CheckClangFormatOnPRMultibranchJobBuilder
+import utilities.CheckClangFormatOnPRMultibranchJobBuilder
 import groovy.json.JsonSlurper
 
 def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
