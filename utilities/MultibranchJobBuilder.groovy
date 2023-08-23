@@ -10,11 +10,6 @@ public enum eMutlibranchType {
   UNKNOWN
 }
 
-public static final int MUTLIBRANCH_CLANG_FORMAT = 0;
-public static final int MULTIBRANCH_BUILD   = 2;
-public static final int MULTIBRANCH_UNIT_TESTS  = 3;
-public static final int MULTIBRANCH_UNIT_TESTS  = 3;
-
 class CheckClangFormatOnPRMultibranchJobBuilder {
   static void multibranch(dslFactory, type, dirpath, repo_name) {
 
