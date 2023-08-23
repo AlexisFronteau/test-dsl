@@ -38,6 +38,8 @@ class MultibranchJobBuilder {
     def job = dslFactory.multibranchPipelineJob(dirpath + '/' + repo_name + '_' + jobSuffix)
     job.with {
       description('Check clang-format on PR on repository ' + repo_name)
+
+      disabled()
       
       branchSources {
         branchSource {
