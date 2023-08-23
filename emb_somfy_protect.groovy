@@ -1,11 +1,6 @@
 import utilities.CheckClangFormatOnPRMultibranchJobBuilder
 import groovy.json.JsonSlurper
 
-def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
-def projectDir = groovyUtils.projectPath
-
-evaluate(new File(projectDir, "utilities/builder_multibranch_checkClangFormatOnPR.groovy"))
-
 def projects = new JsonSlurper().parseText(readFileFromWorkspace('projectDescription.json'))
 def base_dir = 'BE/EMB'
 
