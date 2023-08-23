@@ -3,13 +3,6 @@ package utilities
 /**
  * Generates jobs that check if code is correclty formatted
  */
-public enum eMutlibranchType {
-  CLANG_FORMAT,
-  BUILD,
-  UNIT_TESTS,
-  UNKNOWN
-}
-
 class MultibranchJobBuilder {
   static void multibranch(dslFactory, type, dirpath, repo_name) {
 
