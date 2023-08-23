@@ -16,10 +16,6 @@ def build_repository_path(repo_name, job_subpath) {
 		path += ('/' + job_subpath)
 	}
 
-	if (!multibranch.type) {
-		throw new Exception("Missing repository name")
-	}
-
 	return [repo_name, path]
 }
 
@@ -54,7 +50,7 @@ projects.multibranch.clangformat.each { multibranch ->
 	MultibranchJobBuilder.multibranch(this, "clang-format", path, repo_name)
 }
 
-projects.multibranch.clangformat.each { multibranch ->
+projects.multibranch.unittests.each { multibranch ->
 	def (repo_name, path) = build_repository_path(multibranch.repo, multibranch.path)
 	MultibranchJobBuilder.multibranch(this, "unit-tests", path, repo_name)
 }
