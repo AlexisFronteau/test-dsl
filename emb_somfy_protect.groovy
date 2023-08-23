@@ -4,15 +4,15 @@ import groovy.json.JsonSlurper
 def projects = new JsonSlurper().parseText(readFileFromWorkspace('projectDescription.json'))
 def base_dir = 'BE/EMB'
 
-def build_repository_path(repo_name) {
-	if (!multibranch.repo)
+def build_repository_path(repo_name, job_subpath) {
+	if (!repo_name)
 	{
 		throw new Exception("Missing repository name")
 	}
 
 	def path = base_dir
-	if (multibranch.path) {
-		path += ('/' + multibranch.path)
+	if (job_subpath) {
+		path += ('/' + job_subpath)
 	}
 
 	if (!multibranch.type) {
