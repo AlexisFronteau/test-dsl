@@ -20,18 +20,18 @@ projects.multibranch.each { multibranch ->
 	if (multibranch.path) {
 		path += ('/' + multibranch.path)
 	}
-	
-	def mutlibranchType = eMutlibranchType.UNKNOWN
+
+	def mutlibranchType = MULTIBRANCH_UNKNOWN
 
 	if (multibranch.type) {
 		if (multibranch.type == 'build') {
-			mutlibranchType = eMutlibranchType.BUILD
+			mutlibranchType = MULTIBRANCH_BUILD
 		}
 		else if (multibranch.type == 'clang-format') {
-			mutlibranchType = eMutlibranchType.CLANG_FORMAT
+			mutlibranchType = MUTLIBRANCH_CLANG_FORMAT
 		}
 		else if (multibranch.type == 'unit-tests') {
-			mutlibranchType = eMutlibranchType.UNIT_TESTS
+			mutlibranchType = MULTIBRANCH_UNIT_TESTS
 		}
 		else
 		{

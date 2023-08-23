@@ -3,12 +3,17 @@ package utilities
 /**
  * Generates jobs that check if code is correclty formatted
  */
-enum eMutlibranchType {
+public enum eMutlibranchType {
   CLANG_FORMAT,
   BUILD,
   UNIT_TESTS,
   UNKNOWN
 }
+
+public static final int MUTLIBRANCH_CLANG_FORMAT = 0;
+public static final int MULTIBRANCH_BUILD   = 2;
+public static final int MULTIBRANCH_UNIT_TESTS  = 3;
+public static final int MULTIBRANCH_UNKNOWN  = 4;
 
 class CheckClangFormatOnPRMultibranchJobBuilder {
   static void multibranch(dslFactory, type, dirpath, repo_name) {
@@ -19,15 +24,15 @@ class CheckClangFormatOnPRMultibranchJobBuilder {
     def githubLabel = ''
 
     switch(type) {
-      case eMutlibranchType.CLANG_FORMAT:
+      case MUTLIBRANCH_CLANG_FORMAT:
         jobSuffix = 'checkClangFormatOnPR'
         githubLabel = 'clang-format'
       break
-      case eMutlibranchType.BUILD:
+      case MULTIBRANCH_BUILD:
         jobSuffix = 'checkBuildOnPR'
         githubLabel = 'build'
       break
-      case eMutlibranchType.UNIT_TESTS:
+      case MULTIBRANCH_UNIT_TESTS:
         jobSuffix = 'checkUnitTestsOnPR'
         githubLabel = 'unit-tests'
       break
