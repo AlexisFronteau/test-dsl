@@ -8,7 +8,7 @@
 			{ "path" : "SOC", "repo" : "aio_fw" },
 			{ "path" : "SOC", "repo" : "aio_app" },
 			{ "path" : "VADDON", "repo" : "aio_fw" },
-			{ "path" : "VADDON", "repo" : "vaddon_app" },
+			{ "path" : "VADDON", "repo" : "vaddon_app" }
 		],
 		"checkClangFormatOnPR" : [
 			{ "path" : "INTELLITAG", "repo" : "intellitag_fw" },
