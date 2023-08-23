@@ -26,5 +26,5 @@ projects.multibranch.each { multibranch ->
 		return
 	}
 	
-	MultibranchJobBuilder.multibranch(this, mutlibranchType, path, repo_name)
+	MultibranchJobBuilder.multibranch(this, mutlibranch.type, path, repo_name)
 }
