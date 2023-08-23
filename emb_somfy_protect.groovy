@@ -19,28 +19,25 @@ def build_repository_path(repo_name, job_subpath) {
 	return [repo_name, path]
 }
 
-folder('BE')
-folder('BE/EMB')
+def create_base_folder(dslFactory, dir) {
+	String[] subdirs = dir.split("/");
+	def cur = subdirs[0]
+	for (String subdir : subdirs)
+	{
+		if (cur == '') {
+			cur = subdir
+		}
+		else {
+			cur += '/' + subdir
+		}
+
+		dslFactory.folder(cur)
+	}
+}
+
+create_base_folder(this, base_dir)
 
 projects.multibranch.build.each { multibranch ->
-	// if (!multibranch.repo)
-	// {
-	// 	println("Missing repository name");
-	// 	return
-	// }
-	// 
-	// def repo_name = multibranch.repo
-	// 
-	// def path = base_dir
-	// if (multibranch.path) {
-	// 	path += ('/' + multibranch.path)
-	// }
-	// 
-	// if (!multibranch.type) {
-	// 	println("Missing multibranch type")
-	// 	return
-	// }
-
 	def (repo_name, path) = build_repository_path(multibranch.repo, multibranch.path)
 	MultibranchJobBuilder.multibranch(this, "build", path, repo_name)
 }
