@@ -1,34 +1,54 @@
 {
 	"multibranch": {
 		"build": [
-			{ "type": "build", "path" : "AIO", "repo" : "aio_fw" },
-			{ "type": "build", "path" : "AIO", "repo" : "aio_app" },
-			{ "type": "build", "path" : "SIC", "repo" : "sic_fw" },
-			{ "type": "build", "path" : "SIC", "repo" : "sic_app" },
-			{ "type": "build", "path" : "SOC", "repo" : "soc_fw" },
-			{ "type": "build", "path" : "SOC", "repo" : "soc_app" },
-			{ "type": "build", "path" : "VADDON", "repo" : "vaddon_fw" },
-			{ "type": "build", "path" : "VADDON", "repo" : "vaddon_app" },
-			{ "type": "build", "path" : "DOORLOCK", "repo" : "doorlock_sdk" },
-			{ "type": "build", "path" : "DOORLOCK", "repo" : "doorlock_gateway_espressif_sdk" },
-			{ "type": "build", "path" : "DOORLOCK", "repo" : "doorlock_gateway_nordic_sdk" },
-			{ "type": "build", "path" : "DOORLOCK", "repo" : "doorlock_reader_sdk" },
-			{ "type": "build", "path" : "LIBS", "repo" : "sp_cam" }
+			{ "path" : "AIO", "repo" : "aio_fw" },
+			{ "path" : "AIO", "repo" : "aio_app" },
+			{ "path" : "INTELLITAG", "repo" : "intellitag_fw" },
+			{ "path" : "INTELLITAG", "repo" : "sm2p_intellitag_fw" },
+			{ "path" : "INTELLITAG", "repo" : "sm2p_sensors_sw" },
+			{ "path" : "INTELLITAG", "repo" : "sha_devices_libraries" },
+			{ "path" : "SIC", "repo" : "sic_fw" },
+			{ "path" : "SIC", "repo" : "sic_app" },
+			{ "path" : "SOC", "repo" : "soc_fw" },
+			{ "path" : "SOC", "repo" : "soc_app" },
+			{ "path" : "VADDON", "repo" : "vaddon_fw" },
+			{ "path" : "VADDON", "repo" : "vaddon_app" },
+			{ "path" : "DOORLOCK", "repo" : "doorlock_sdk" },
+			{ "path" : "DOORLOCK", "repo" : "doorlock_gateway_espressif_sdk" },
+			{ "path" : "DOORLOCK", "repo" : "doorlock_gateway_nordic_sdk" },
+			{ "path" : "DOORLOCK", "repo" : "doorlock_reader_sdk" },
+			{ "path" : "LINK", "repo" : "Buzz-Plug-Firmware" },
+			{ "path" : "LINK", "repo" : "somfy-area-network" },
+			{ "path" : "LINK", "repo" : "link2_premium_app" },
+			{ "path" : "LIBS", "repo" : "sp_automation" },
+			{ "path" : "LIBS", "repo" : "sp_cam" },
+			{ "path" : "LIBS", "repo" : "sp_data_model" },
+			{ "path" : "LIBS", "repo" : "sp_fw_hal" },
+			{ "path" : "LIBS", "repo" : "sp_security_system" },
+			{ "path" : "LIBS", "repo" : "sp_webrtc" },
+			{ "path" : "WICED", "repo" : "wiced_common_components" }
 		],
 		"clangformat": [
-			{ "type": "clang-format", "path" : "DOORLOCK", "repo" : "doorlock_sdk" },
-			{ "type": "clang-format", "path" : "DOORLOCK", "repo" : "doorlock_gateway_espressif_sdk" },
-			{ "type": "clang-format", "path" : "DOORLOCK", "repo" : "doorlock_gateway_nordic_sdk" },
-			{ "type": "clang-format", "path" : "DOORLOCK", "repo" : "doorlock_reader_sdk" },
-			{ "type": "clang-format", "path" : "INTELLITAG", "repo" : "intellitag_fw" },
-			{ "type": "clang-format", "path" : "INTELLITAG", "repo" : "sha_devices_libraries" },
-			{ "type": "clang-format", "path" : "LINK", "repo" : "link2_premium_app" },
-			{ "type": "clang-format", "path" : "LINK", "repo" : "somfy-area-network" },
-			{ "type": "clang-format", "path" : "LIBS", "repo" : "sp_automation" },
-			{ "type": "clang-format", "path" : "LIBS", "repo" : "sp_webrtc" }
+			{ "path" : "DOORLOCK", "repo" : "doorlock_sdk" },
+			{ "path" : "DOORLOCK", "repo" : "doorlock_gateway_espressif_sdk" },
+			{ "path" : "DOORLOCK", "repo" : "doorlock_gateway_nordic_sdk" },
+			{ "path" : "DOORLOCK", "repo" : "doorlock_reader_sdk" },
+			{ "path" : "INTELLITAG", "repo" : "intellitag_fw" },
+			{ "path" : "INTELLITAG", "repo" : "sha_devices_libraries" },
+			{ "path" : "LINK", "repo" : "link2_premium_app" },
+			{ "path" : "LINK", "repo" : "somfy-area-network" },
+			{ "path" : "LIBS", "repo" : "sp_automation" },
+			{ "path" : "LIBS", "repo" : "sp_webrtc" }
 		],
 		"unittests": [
-			{ "type": "unit-tests", "path" : "LIBS", "repo" : "sp_cam" }
+			{ "path" : "DOORLOCK", "repo" : "doorlock_reader_sdk" },
+			{ "path" : "LINK", "repo" : "somfy-area-network" },
+			{ "path" : "LINK", "repo" : "link2_premium_app" },
+			{ "path" : "LIBS", "repo" : "sp_automation" },
+			{ "path" : "LIBS", "repo" : "sp_cam" },
+			{ "path" : "LIBS", "repo" : "sp_data_model" },
+			{ "path" : "LIBS", "repo" : "sp_fw_hal" },
+			{ "path" : "WICED", "repo" : "wiced_common_components" }
 		]
 	}
 }
