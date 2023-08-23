@@ -19,7 +19,7 @@ class CheckClangFormatOnPRMultibranchJobBuilder {
     def githubLabel = ''
 
     if (type) {
-      if (multibranch.type == 'build') {
+      if (type == 'build') {
         jobSuffix = 'checkBuildOnPR'
         githubLabel = 'build'
       }
