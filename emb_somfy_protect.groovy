@@ -8,7 +8,7 @@ folder('BE')
 folder('BE/EMB')
 
 projects.multibranch.checkClangFormatOnPR.each { multibranch ->
-	def path = base_dir 
+	def path = base_dir
 	if (multibranch.path) {
 		path += ('/' + multibranch.path)
 	}

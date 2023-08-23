@@ -5,49 +5,47 @@ package utilities
  */
 class CheckClangFormatOnPRMultibranchJobBuilder {
   static void multibranch(dslFactory, dirpath, repo_name) {
-    def job = dslFactory.multibranchPipelineJob()
+
+    folder(dirpath)
+
+    def job = dslFactory.multibranchPipelineJob(dirpath + '/' + repo_name + '_CheckClangFormatOnPR')
     job.with {
-      folder(dirpath)
+      description('Check clang-format on PR on repository ' + repo_name)
       
-      multibranchPipelineJob(dirpath + '/' + repo_name + '_CheckClangFormatOnPR') {
-        description('Check clang-format on PR on repository ' + repo_name)
-        
-        branchSources {
-          branchSource {
-            source {
-              github {
-                repoOwner('xofym') 
-                repository(repo_name) 
-                repositoryUrl('https://github.com/xofym')
-                configuredByUrl(true)
-                credentialsId('JenkinsGithub')
-                
-                traits {
-                  gitHubPullRequestDiscovery {
-                    strategyId(2)
-                  }
-                  notificationContextTrait {
-                    contextLabel('ci/check-format')
-                    typeSuffix(false)
-                  }
+      branchSources {
+        branchSource {
+          source {
+            github {
+              repoOwner('xofym') 
+              repository(repo_name) 
+              repositoryUrl('https://github.com/xofym')
+              configuredByUrl(true)
+              credentialsId('JenkinsGithub')
+              
+              traits {
+                gitHubPullRequestDiscovery {
+                  strategyId(2)
+                }
+                notificationContextTrait {
+                  contextLabel('ci/check-format')
+                  typeSuffix(false)
                 }
               }
             }
           }
         }
-        
-        factory {
-          workflowBranchProjectFactory {
-            scriptPath('ci/Jenkinsfile.pr')
-          }
+      }
+      
+      factory {
+        workflowBranchProjectFactory {
+          scriptPath('ci/Jenkinsfile.pr')
         }
-        
-        orphanedItemStrategy {
-          discardOldItems  {
-            numToKeep(5) 
-          }
+      }
+      
+      orphanedItemStrategy {
+        discardOldItems  {
+          numToKeep(5) 
         }
-
       }
     }
   }
