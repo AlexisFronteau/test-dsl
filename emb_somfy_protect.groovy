@@ -21,26 +21,8 @@ projects.multibranch.each { multibranch ->
 		path += ('/' + multibranch.path)
 	}
 
-	def mutlibranchType = MULTIBRANCH_UNKNOWN
-
-	if (multibranch.type) {
-		if (multibranch.type == 'build') {
-			mutlibranchType = MULTIBRANCH_BUILD
-		}
-		else if (multibranch.type == 'clang-format') {
-			mutlibranchType = MUTLIBRANCH_CLANG_FORMAT
-		}
-		else if (multibranch.type == 'unit-tests') {
-			mutlibranchType = MULTIBRANCH_UNIT_TESTS
-		}
-		else
-		{
-			println("Invalid multibranch type " + multibranch.type + " for " + multibranch.repo)
-			return
-		}
-	}
-	else {
-		println("No multibranch type for " + multibranch.repo)
+	if (!multibranch.type) {
+		println("Missing multibranch type")
 		return
 	}
 	

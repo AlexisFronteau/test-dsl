@@ -13,7 +13,7 @@ public enum eMutlibranchType {
 public static final int MUTLIBRANCH_CLANG_FORMAT = 0;
 public static final int MULTIBRANCH_BUILD   = 2;
 public static final int MULTIBRANCH_UNIT_TESTS  = 3;
-public static final int MULTIBRANCH_UNKNOWN  = 4;
+public static final int MULTIBRANCH_UNIT_TESTS  = 3;
 
 class CheckClangFormatOnPRMultibranchJobBuilder {
   static void multibranch(dslFactory, type, dirpath, repo_name) {
@@ -23,21 +23,27 @@ class CheckClangFormatOnPRMultibranchJobBuilder {
     def jobSuffix = ''
     def githubLabel = ''
 
-    switch(type) {
-      case MUTLIBRANCH_CLANG_FORMAT:
-        jobSuffix = 'checkClangFormatOnPR'
-        githubLabel = 'clang-format'
-      break
-      case MULTIBRANCH_BUILD:
+    if (type) {
+      if (multibranch.type == 'build') {
         jobSuffix = 'checkBuildOnPR'
         githubLabel = 'build'
-      break
-      case MULTIBRANCH_UNIT_TESTS:
+      }
+      else if (type == 'clang-format') {
+        jobSuffix = 'checkClangFormatOnPR'
+        githubLabel = 'clang-format'
+      }
+      else if (type == 'unit-tests') {
         jobSuffix = 'checkUnitTestsOnPR'
         githubLabel = 'unit-tests'
-      break
-      default:
-        println("Invalid multibranch type")
+      }
+      else
+      {
+        println("Invalid multibranch type " + multibranch.type + " for " + multibranch.repo)
+        return
+      }
+    }
+    else {
+      println("No multibranch type for " + multibranch.repo)
       return
     }
 
