@@ -19,19 +19,20 @@ class CheckClangFormatOnPRMultibranchJobBuilder {
     def githubLabel = ''
 
     switch(type) {
-      case CLANG_FORMAT:
+      case eMutlibranchType.CLANG_FORMAT:
         jobSuffix = 'checkClangFormatOnPR'
         githubLabel = 'clang-format'
       break
-      case CLANG_FORMAT:
+      case eMutlibranchType.BUILD:
         jobSuffix = 'checkBuildOnPR'
         githubLabel = 'build'
       break
-      case CLANG_FORMAT:
+      case eMutlibranchType.UNIT_TESTS:
         jobSuffix = 'checkUnitTestsOnPR'
         githubLabel = 'unit-tests'
       break
-      case UNKNOWN:
+      default:
+        println("Invalid multibranch type")
       return
     }
 
