@@ -1,20 +1,34 @@
 {
-	"multibranch": [
-		{ "type": "build", "path" : "AIO", "repo" : "aio_fw" },
-		{ "type": "build", "path" : "AIO", "repo" : "aio_app" },
-		{ "type": "build", "path" : "SIC", "repo" : "sic_fw" },
-		{ "type": "build", "path" : "SIC", "repo" : "sic_app" },
-		{ "type": "build", "path" : "SOC", "repo" : "soc_fw" },
-		{ "type": "build", "path" : "SOC", "repo" : "soc_app" },
-		{ "type": "build", "path" : "VADDON", "repo" : "vaddon_fw" },
-		{ "type": "build", "path" : "VADDON", "repo" : "vaddon_app" },
-		{ "type": "clang-format", "path" : "INTELLITAG", "repo" : "intellitag_fw" },
-		{ "type": "clang-format", "path" : "INTELLITAG", "repo" : "sha_devices_libraries" },
-		{ "type": "clang-format", "path" : "LINK", "repo" : "link2_premium_app" },
-		{ "type": "clang-format", "path" : "LINK", "repo" : "somfy-area-network" },
-		{ "type": "clang-format", "path" : "LIBS", "repo" : "sp_automation" },
-		{ "type": "clang-format", "path" : "LIBS", "repo" : "sp_webrtc" },
-		{ "type": "build", "path" : "LIBS", "repo" : "sp_cam" },
-		{ "type": "unit-tests", "path" : "LIBS", "repo" : "sp_cam" }
-	]
+	"multibranch": {
+		"build": [
+			{ "type": "build", "path" : "AIO", "repo" : "aio_fw" },
+			{ "type": "build", "path" : "AIO", "repo" : "aio_app" },
+			{ "type": "build", "path" : "SIC", "repo" : "sic_fw" },
+			{ "type": "build", "path" : "SIC", "repo" : "sic_app" },
+			{ "type": "build", "path" : "SOC", "repo" : "soc_fw" },
+			{ "type": "build", "path" : "SOC", "repo" : "soc_app" },
+			{ "type": "build", "path" : "VADDON", "repo" : "vaddon_fw" },
+			{ "type": "build", "path" : "VADDON", "repo" : "vaddon_app" },
+			{ "type": "build", "path" : "DOORLOCK", "repo" : "doorlock_sdk" },
+			{ "type": "build", "path" : "DOORLOCK", "repo" : "doorlock_gateway_espressif_sdk" },
+			{ "type": "build", "path" : "DOORLOCK", "repo" : "doorlock_gateway_nordic_sdk" },
+			{ "type": "build", "path" : "DOORLOCK", "repo" : "doorlock_reader_sdk" },
+			{ "type": "build", "path" : "LIBS", "repo" : "sp_cam" }
+		],
+		"clangformat": [
+			{ "type": "clang-format", "path" : "DOORLOCK", "repo" : "doorlock_sdk" },
+			{ "type": "clang-format", "path" : "DOORLOCK", "repo" : "doorlock_gateway_espressif_sdk" },
+			{ "type": "clang-format", "path" : "DOORLOCK", "repo" : "doorlock_gateway_nordic_sdk" },
+			{ "type": "clang-format", "path" : "DOORLOCK", "repo" : "doorlock_reader_sdk" },
+			{ "type": "clang-format", "path" : "INTELLITAG", "repo" : "intellitag_fw" },
+			{ "type": "clang-format", "path" : "INTELLITAG", "repo" : "sha_devices_libraries" },
+			{ "type": "clang-format", "path" : "LINK", "repo" : "link2_premium_app" },
+			{ "type": "clang-format", "path" : "LINK", "repo" : "somfy-area-network" },
+			{ "type": "clang-format", "path" : "LIBS", "repo" : "sp_automation" },
+			{ "type": "clang-format", "path" : "LIBS", "repo" : "sp_webrtc" }
+		],
+		"unittests": [
+			{ "type": "unit-tests", "path" : "LIBS", "repo" : "sp_cam" }
+		]
+	}
 }

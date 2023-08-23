@@ -4,17 +4,11 @@ import groovy.json.JsonSlurper
 def projects = new JsonSlurper().parseText(readFileFromWorkspace('projectDescription.json'))
 def base_dir = 'BE/EMB'
 
-folder('BE')
-folder('BE/EMB')
-
-projects.multibranch.each { multibranch ->
+def build_repository_path(repo_name) {
 	if (!multibranch.repo)
 	{
-		println("Missing repository name");
-		return
+		throw new Exception("Missing repository name")
 	}
-
-	def repo_name = multibranch.repo
 
 	def path = base_dir
 	if (multibranch.path) {
@@ -22,9 +16,44 @@ projects.multibranch.each { multibranch ->
 	}
 
 	if (!multibranch.type) {
-		println("Missing multibranch type")
-		return
+		throw new Exception("Missing repository name")
 	}
-	
-	MultibranchJobBuilder.multibranch(this, multibranch.type, path, repo_name)
+
+	return [repo_name, path]
+}
+
+folder('BE')
+folder('BE/EMB')
+
+projects.multibranch.build.each { multibranch ->
+	// if (!multibranch.repo)
+	// {
+	// 	println("Missing repository name");
+	// 	return
+	// }
+	// 
+	// def repo_name = multibranch.repo
+	// 
+	// def path = base_dir
+	// if (multibranch.path) {
+	// 	path += ('/' + multibranch.path)
+	// }
+	// 
+	// if (!multibranch.type) {
+	// 	println("Missing multibranch type")
+	// 	return
+	// }
+
+	def (repo_name, path) = build_repository_path(multibranch.repo, multibranch.path)
+	MultibranchJobBuilder.multibranch(this, "build", path, repo_name)
+}
+
+projects.multibranch.clangformat.each { multibranch ->
+	def (repo_name, path) = build_repository_path(multibranch.repo, multibranch.path)
+	MultibranchJobBuilder.multibranch(this, "clang-format", path, repo_name)
+}
+
+projects.multibranch.clangformat.each { multibranch ->
+	def (repo_name, path) = build_repository_path(multibranch.repo, multibranch.path)
+	MultibranchJobBuilder.multibranch(this, "unit-tests", path, repo_name)
 }
