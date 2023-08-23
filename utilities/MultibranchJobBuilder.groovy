@@ -33,12 +33,12 @@ class CheckClangFormatOnPRMultibranchJobBuilder {
       }
       else
       {
-        println("Invalid multibranch type " + multibranch.type + " for " + multibranch.repo)
+        println("Invalid multibranch type " + type + " for " + repo_name)
         return
       }
     }
     else {
-      println("No multibranch type for " + multibranch.repo)
+      println("No multibranch type for " + repo_name)
       return
     }
 
