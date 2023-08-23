@@ -9,7 +9,10 @@ class CheckOnBuildMultibranchJobBuilder {
    * Generates a Pipeline job to deploy a staging environment
    */
   static void multibranch(dslFactory, dirpath, repo_name) {
+    dslFactory.folder(dirpath)
+
     def job = dslFactory.pipelineJob()
+    
     job.with {
       folder(dirpath)
       
@@ -31,7 +34,7 @@ class CheckOnBuildMultibranchJobBuilder {
                     strategyId(2)
                   }
                   notificationContextTrait {
-                    contextLabel('ci/check_build')
+                    contextLabel('ci/check-build')
                     typeSuffix(false)
                   }
                 }
@@ -42,7 +45,7 @@ class CheckOnBuildMultibranchJobBuilder {
         
         factory {
           workflowBranchProjectFactory {
-            scriptPath('ci/Jenkinsfile.pr')
+            scriptPath('ci/Jenkinsfile.clang-format')
           }
         }
         

@@ -1,22 +1,20 @@
 {
-	"multibranch": {
-		"checkBuildOnPR" : [
-			{ "path" : "AIO", "repo" : "aio_fw" },
-			{ "path" : "AIO", "repo" : "aio_app" },
-			{ "path" : "SIC", "repo" : "sic_fw" },
-			{ "path" : "SIC", "repo" : "sic_app" },
-			{ "path" : "SOC", "repo" : "aio_fw" },
-			{ "path" : "SOC", "repo" : "aio_app" },
-			{ "path" : "VADDON", "repo" : "aio_fw" },
-			{ "path" : "VADDON", "repo" : "vaddon_app" }
-		],
-		"checkClangFormatOnPR" : [
-			{ "path" : "INTELLITAG", "repo" : "intellitag_fw" },
-			{ "path" : "INTELLITAG", "repo" : "sha_devices_libraries" },
-			{ "path" : "LINK", "repo" : "link2_premium_app" },
-			{ "path" : "LINK", "repo" : "somfy-area-network" },
-			{ "path" : "LIBS", "repo" : "sp_automation" },
-			{ "path" : "LIBS", "repo" : "sp_webrtc" }
-		]
-	}
+	"multibranch": [
+		{ "type": "build", "path" : "AIO", "repo" : "aio_fw" },
+		{ "type": "build", "path" : "AIO", "repo" : "aio_app" },
+		{ "type": "build", "path" : "SIC", "repo" : "sic_fw" },
+		{ "type": "build", "path" : "SIC", "repo" : "sic_app" },
+		{ "type": "build", "path" : "SOC", "repo" : "soc_fw" },
+		{ "type": "build", "path" : "SOC", "repo" : "soc_app" },
+		{ "type": "build", "path" : "VADDON", "repo" : "vaddon_fw" },
+		{ "type": "build", "path" : "VADDON", "repo" : "vaddon_app" },
+		{ "type": "clang-format", "path" : "INTELLITAG", "repo" : "intellitag_fw" },
+		{ "type": "clang-format", "path" : "INTELLITAG", "repo" : "sha_devices_libraries" },
+		{ "type": "clang-format", "path" : "LINK", "repo" : "link2_premium_app" },
+		{ "type": "clang-format", "path" : "LINK", "repo" : "somfy-area-network" },
+		{ "type": "clang-format", "path" : "LIBS", "repo" : "sp_automation" },
+		{ "type": "clang-format", "path" : "LIBS", "repo" : "sp_webrtc" },
+		{ "type": "build", "path" : "LIBS", "repo" : "sp_cam" },
+		{ "type": "unit-tests", "path" : "LIBS", "repo" : "sp_cam" }
+	]
 }
