@@ -6,7 +6,7 @@ package utilities
 class CheckClangFormatOnPRMultibranchJobBuilder {
   static void multibranch(dslFactory, dirpath, repo_name) {
 
-    folder(dirpath)
+    dslFactory.folder(dirpath)
 
     def job = dslFactory.multibranchPipelineJob(dirpath + '/' + repo_name + '_CheckClangFormatOnPR')
     job.with {
@@ -35,13 +35,13 @@ class CheckClangFormatOnPRMultibranchJobBuilder {
           }
         }
       }
-      
+
       factory {
         workflowBranchProjectFactory {
           scriptPath('ci/Jenkinsfile.pr')
         }
       }
-      
+
       orphanedItemStrategy {
         discardOldItems  {
           numToKeep(5) 
