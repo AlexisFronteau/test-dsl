@@ -1,8 +1,9 @@
 import utilities.MultibranchJobBuilder
 import groovy.json.JsonSlurper
 
+base_dir = 'BE/EMB'
+
 def projects = new JsonSlurper().parseText(readFileFromWorkspace('projectDescription.json'))
-def base_dir = 'BE/EMB'
 
 def build_repository_path(repo_name, job_subpath) {
 	if (!repo_name)
