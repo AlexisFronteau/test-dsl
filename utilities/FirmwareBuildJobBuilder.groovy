@@ -53,11 +53,13 @@ class FirmwareBuildJobBuilder {
 
         if (m_launchAfterJob != '') {
             job.with {
-            pipelineTriggers {
-                    triggers {
-                        upstream {
-                            upstreamProjects(launchAfterJob)
-                            threshold('SUCCESS')
+                properties {
+                    pipelineTriggers {
+                        triggers {
+                            upstream {
+                                upstreamProjects(launchAfterJob)
+                                threshold('SUCCESS')
+                            }
                         }
                     }
                 }
