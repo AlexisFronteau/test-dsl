@@ -125,7 +125,6 @@ class FirmwareBuildJobBuilder {
                                     name(key)
                                     defaultValue(param.defaultValue)
                                     description(param.description)
-                                    trim(false)
                                 }
                                 break;
                         }
