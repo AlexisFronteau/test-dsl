@@ -69,35 +69,37 @@ class FirmwareBuildJobBuilder {
             dslFactory.out.println(m_lParamsList.BASE_BRANCH)
         }
 
-        // if (json.keySet().contains('additionalParams')) {
-        //     json.additionalParams.each { param ->
-        //         if (!PARAMS_LIST.keySet().contains(param)) {
-        //             throw "Additional param not exists in list - need to had it"
-        //         }
+        if (json.keySet().contains('additionalParams')) {
+            json.additionalParams.each { param ->
+                if (!PARAMS_LIST.keySet().contains(param)) {
+                    throw "Additional param not exists in list - need to had it"
+                }
                  
-        //         m_lParamsList.param = new JsonSlurper().parseText(PARAMS_LIST.param)
+                m_lParamsList.param = PARAMS_LIST.param
 
-        //         if (param == "PLATFORM") {
-        //             def platformList = []
+                if (param == "PLATFORM") {
+                    def platformList = []
 
-        //             if (json.keySet().contains('defaultPlatform')) {
-        //                 m_lParamsList.param.default = json.defaultPlatform
-        //                 platformList.add(json.defaultPlatform)
-        //             }
+                    if (json.keySet().contains('defaultPlatform')) {
+                        m_lParamsList.param.defaultValue = json.defaultPlatform
+                        platformList.add(json.defaultPlatform)
+                    }
 
-        //             if (json.keySet().contains('additionalPlatform')) {
-        //                 json.additionalPlatform.each { platform -> 
-        //                     platformList.add(platform)
-        //                 }
-        //             }
+                    if (json.keySet().contains('additionalPlatform')) {
+                        json.additionalPlatform.each { platform -> 
+                            platformList.add(platform)
+                        }
+                    }
 
-        //             if (!platformList.isEmpty())
-        //             {
-        //                 m_lParamsList.param.description = m_lParamsList.param.description + '[' + platformList.join(",") + ']'
-        //             }
-        //         }
-        //     }
-        // }
+                    if (!platformList.isEmpty())
+                    {
+                        m_lParamsList.param.description = m_lParamsList.param.description + '[' + platformList.join(",") + ']'
+                    }
+                }
+
+                dslFactory.out.println(param + " : " + m_lParamsList.param)
+            }
+        }
     }
 
     void generate_pipeline(dslFactory) {
