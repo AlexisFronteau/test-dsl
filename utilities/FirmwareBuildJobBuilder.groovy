@@ -31,7 +31,7 @@ class FirmwareBuildJobBuilder {
         }
     }
 
-    static void generate_pipeline(dslFactory) {
+    void generate_pipeline(dslFactory) {
 
         dslFactory.folder(m_sDirectory)
 
