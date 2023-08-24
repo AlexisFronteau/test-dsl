@@ -88,6 +88,21 @@ class FirmwareBuildJobBuilder {
         }
     }
 
+    private String BuildDescription() {
+        String str
+
+        switch (m_sType) {
+            case "build":
+                str += "Build firmware from ${m_sRepo_name}"
+                break
+            case "dockersdk" :
+                str += "Build docker image containing already built builroot sdk from ${m_sLaunchAfterJob} and push it to registry"
+                break;
+        }
+
+        return str
+    }
+
     void generate_pipeline(dslFactory) {
 
         dslFactory.folder(m_sDirectory)
@@ -95,7 +110,7 @@ class FirmwareBuildJobBuilder {
         def job = dslFactory.pipelineJob(m_sDirectory + '/' + m_sJobName)
 
         job.with {
-            description("Build firmware from ${m_sRepo_name}")
+            description(BuildDescription())
     
             disabled(true)
 
@@ -123,13 +138,6 @@ class FirmwareBuildJobBuilder {
                     }
                 }
             }
-
-            // parameters {
-            //     booleanParam(parameterName='FULL_BUILD', defaultValue=false, description='Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware')
-            //     stringParam(parameterName='FEATURE', defaultValue='None', description='The feature (branch) to select if it exists')
-            //     stringParam(parameterName='BASE_BRANCH', defaultValue='master', description='The branch on which to base the build')
-            //     stringParam(parameterName='PLATFORM', defaultValue="$platform", description="The platform to be built ($platform_list)")
-            // }
             
             logRotator {
                 numToKeep(5)
@@ -155,6 +163,16 @@ class FirmwareBuildJobBuilder {
                             }
                         }
                     }
+                }
+
+                if (m_sType == "dockersdk") {
+                    if (m_sLaunchAfterJob.isEmpty()) {
+                        throw new Exception("Dockersdk job must have a launchAfterJob parameter")
+                    }
+
+                    copyArtifactPermission {
+                        projectNames("${m_sLaunchAfterJob}")
+                    } 
                 }
 
                 if (!m_sLaunchAfterJob.isEmpty()) {

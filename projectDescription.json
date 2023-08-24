@@ -1,9 +1,11 @@
 {
 	"jobs": {
 		"build" : [
-			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw", 
-				"additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": ["s2l_soc_camera", "piou1", "piou2"]},
+			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2l_soc_camera" ]},
 			{ "path" : "SOC", "jobName" : "SOC_APP", "repo" : "soc_app", "launchAfterJob" : "SOC_DOCKER", "launchNightly": false }
+		],
+		"dockersdk" : [
+			{ "path" : "SOC", "jobName" : "SOC_DOCKER", "repo" : "soc_fw", "launchAfterJob" : "SOC_SDK", "launchNightly": false }
 		]
 	},
 	"multibranch": {
