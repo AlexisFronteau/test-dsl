@@ -1,4 +1,9 @@
 {
+	"jobs": {
+		"build" : [
+			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw" }
+		]
+	},
 	"multibranch": {
 		"build": [
 			{ "path" : "AIO", "repo" : "aio_fw" },

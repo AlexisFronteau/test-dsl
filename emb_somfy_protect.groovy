@@ -1,4 +1,5 @@
 import utilities.MultibranchJobBuilder
+import utilities.FirmwareBuildJobBuilder
 import groovy.json.JsonSlurper
 
 base_dir = 'BE/EMB'
@@ -50,4 +51,9 @@ projects.multibranch.clangformat.each { multibranch ->
 projects.multibranch.unittests.each { multibranch ->
 	def (repo_name, path) = build_repository_path(multibranch.repo, multibranch.path)
 	MultibranchJobBuilder.multibranch(this, "unit-tests", path, repo_name)
+}
+
+projects.jobs.build.each { job ->
+	def builder = new FirmwareBuildJobBuilder(base_dir, job)
+	builder.generate_pipeline(this)
 }
