@@ -113,7 +113,7 @@ class FirmwareBuildJobBuilder {
                             branch("${m_sDefaultBaseBranch}")
                             remote {
                                 credentials('jenkins-github-ssh')
-                                github(ownerAndProject: "xofym/${m_sRepo_name}", protocol: 'ssh', host: 'github.com')
+                                github("xofym/${m_sRepo_name}", 'ssh', 'github.com')
                             }
                             extensions {
                                 localBranch {
