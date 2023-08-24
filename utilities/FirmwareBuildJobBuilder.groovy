@@ -13,6 +13,7 @@ class FirmwareBuildJobBuilder {
     String m_sLaunchAfterJob = ''
     String m_sDefaultBaseBranch = 'master'
     String m_sType = ''
+    boolean m_bHasDefaultParams = true
 
     FirmwareBuildJobBuilder(base_dir, type, json) {
         m_sDirectory = base_dir
@@ -39,6 +40,14 @@ class FirmwareBuildJobBuilder {
 
         if (json.launchNightly) {
             m_bLaunchNightly = json.launchNightly
+        }
+
+        if (json.hasDefaultParams) {
+            m_bHasDefaultParams = hasDefaultParams
+        }
+
+        if (json.baseBranch) {
+            m_sDefaultBaseBranch = json.baseBranch
         }
     }
 
@@ -73,6 +82,16 @@ class FirmwareBuildJobBuilder {
                             }
                         }
                     }
+                }
+            }
+        }
+
+        if (m_bHasDefaultParams)
+        {
+            job.with {
+                parameters {
+                    stringParam(parameterName='FEATURE', defaultValue='None', description='The feature (branch) to select if it exists')
+                    stringParam(parameterName='BASE_BRANCH', defaultValue="${m_sDefaultBaseBranch}", description='The branch on which to base the build')
                 }
             }
         }
