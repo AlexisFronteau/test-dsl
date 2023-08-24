@@ -21,6 +21,11 @@ class FirmwareBuildJobBuilder {
             m_sDirectory += ('/' + json.path)
         }
 
+        out.println('jobName' + json.jobName)
+        out.println('repo' + json.repo)
+        out.println('launchNightly' + json.launchNightly)
+        out.println('launchAfterJob' + json.launchAfterJob)
+
         if (json.jobName) {
             m_sJobName = json.jobName
         }
