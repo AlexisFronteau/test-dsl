@@ -60,7 +60,9 @@ projects.multibranch.unittests.each { multibranch ->
 
 projects.jobs.each { key, job ->
 	this.out.println("jobType " + key)
-	this.out.println("job " + job)
-	def builder = new FirmwareBuildJobBuilder(this, base_dir, key, job)
-	builder.generate_pipeline(this)
+	projects.jobs[key].each { job -> 
+		this.out.println("job " + job)
+		def builder = new FirmwareBuildJobBuilder(this, base_dir, key, job)
+		builder.generate_pipeline(this)
+	}
 }
