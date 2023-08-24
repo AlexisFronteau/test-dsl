@@ -55,7 +55,7 @@ create_base_folder(this, base_dir)
 
 projects.multibranch.each { key, _ ->
 	projects.multibranch[key].each { job -> 
-		def builder = new MultibranchJobBuilder(this, base_dir, key, job)
+		def builder = new MultibranchJobBuilder(base_dir, key, job)
 		builder.generate_multibranch(this)
 	}
 }
@@ -64,7 +64,7 @@ projects.jobs.each { key, _ ->
 	this.out.println("jobType " + key)
 	projects.jobs[key].each { job -> 
 		this.out.println("job " + job)
-		def builder = new FirmwareBuildJobBuilder(this, base_dir, key, job)
+		def builder = new FirmwareBuildJobBuilder(base_dir, key, job)
 		builder.generate_pipeline(this)
 	}
 }
