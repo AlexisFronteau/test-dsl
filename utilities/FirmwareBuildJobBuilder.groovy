@@ -78,7 +78,7 @@ class FirmwareBuildJobBuilder {
         }
 
         job.with {
-            description("Build firmware from ${m_sRepo_name}")
+            description("Build firmware from ${m_sRepo_name} after ${m_sLaunchAfterJob}")
     
             disabled(true)
 
