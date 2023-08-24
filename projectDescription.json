@@ -5,7 +5,7 @@
 			{ "path" : "SOC", "jobName" : "SOC_APP", "repo" : "soc_app", "launchAfterJob" : "SOC_DOCKER", "launchNightly": false }
 		],
 		"dockersdk" : [
-			{ "path" : "SOC", "jobName" : "SOC_DOCKER", "repo" : "soc_fw", "launchAfterJob" : "SOC_SDK", "launchNightly": false }
+			{ "path" : "SOC", "jobName" : "SOC_DOCKER", "repo" : "soc_fw", "launchAfterJob" : "SOC_SDK", "launchNightly": false, "hasDefaultParams": false }
 		]
 	},
 	"multibranch": {
@@ -37,7 +37,7 @@
 			{ "path" : "LIBS", "repo" : "sp_webrtc" },
 			{ "path" : "WICED", "repo" : "wiced_common_components" }
 		],
-		"clangformat": [
+		"clang-format": [
 			{ "path" : "DOORLOCK", "repo" : "doorlock_sdk" },
 			{ "path" : "DOORLOCK", "repo" : "doorlock_gateway_espressif_sdk" },
 			{ "path" : "DOORLOCK", "repo" : "doorlock_gateway_nordic_sdk" },
@@ -49,7 +49,7 @@
 			{ "path" : "LIBS", "repo" : "sp_automation" },
 			{ "path" : "LIBS", "repo" : "sp_webrtc" }
 		],
-		"unittests": [
+		"unit-tests": [
 			{ "path" : "DOORLOCK", "repo" : "doorlock_reader_sdk" },
 			{ "path" : "LINK", "repo" : "somfy-area-network" },
 			{ "path" : "LINK", "repo" : "link2_premium_app" },

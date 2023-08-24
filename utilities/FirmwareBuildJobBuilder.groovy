@@ -26,7 +26,7 @@ class FirmwareBuildJobBuilder {
 
     FirmwareBuildJobBuilder(dslFactory, base_dir, type, json) {
         m_sDirectory = base_dir
-        if (json.path) {
+        if (json.keySet().contains('path')) {
             m_sDirectory += ('/' + json.path)
         }
 
@@ -89,7 +89,7 @@ class FirmwareBuildJobBuilder {
     }
 
     private String BuildDescription() {
-        String str
+        String str = ''
 
         switch (m_sType) {
             case "build":
@@ -167,7 +167,7 @@ class FirmwareBuildJobBuilder {
 
                 if (m_sType == "dockersdk") {
                     if (m_sLaunchAfterJob.isEmpty()) {
-                        throw new Exception("Dockersdk job must have a launchAfterJob parameter")
+                        throw new Exception('Dockersdk job must have a "launchAfterJob" parameter')
                     }
 
                     copyArtifactPermission {
