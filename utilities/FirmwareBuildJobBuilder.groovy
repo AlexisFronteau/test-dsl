@@ -107,7 +107,7 @@ class FirmwareBuildJobBuilder {
     
             disabled(true)
 
-            if (!m_lParamsList.empty())
+            if (!m_lParamsList.isEmpty())
             {
                 parameters {
                     m_lParamsList.each { key, param -> 
