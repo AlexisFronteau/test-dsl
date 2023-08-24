@@ -74,22 +74,14 @@ class FirmwareBuildJobBuilder {
                 m_lParamsList[paramName] = PARAMS_LIST[paramName]
 
                 if (paramName == "PLATFORM") {
-                    def platformList = []
-
-                    if (json.keySet().contains('defaultPlatform')) {
-                        m_lParamsList[paramName].defaultValue = json.defaultPlatform
-                        platformList.add(json.defaultPlatform)
-                    }
-
-                    if (json.keySet().contains('additionalPlatform')) {
-                        json.additionalPlatform.each { platform -> 
-                            platformList.add(platform)
+                    if (json.keySet().contains('platformParam')) {
+                        if (! (json.defaultPlatform instanceof List))
+                        {
+                            throw "platformParam must be a List"
                         }
-                    }
-
-                    if (!platformList.isEmpty())
-                    {
-                        m_lParamsList[paramName].description = m_lParamsList[paramName].description + ' [ ' + platformList.join(", ") + ' ]'
+                        
+                        m_lParamsList[paramName].defaultValue = json.defaultPlatform[0]
+                        m_lParamsList[paramName].description = m_lParamsList[paramName].description + ' [ ' + json.defaultPlatform.join(", ") + ' ]'
                     }
                 }
             }

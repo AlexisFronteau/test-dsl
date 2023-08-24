@@ -2,7 +2,7 @@
 	"jobs": {
 		"build" : [
 			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw", 
-				"additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "defaultPlatform": "s2l_soc_camera", "additionalPlatform": [ "piou1", "piou2"]},
+				"additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": ["s2l_soc_camera", "piou1", "piou2"]},
 			{ "path" : "SOC", "jobName" : "SOC_APP", "repo" : "soc_app", "launchAfterJob" : "SOC_DOCKER", "launchNightly": false }
 		]
 	},
