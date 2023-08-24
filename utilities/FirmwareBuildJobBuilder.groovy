@@ -68,20 +68,20 @@ class FirmwareBuildJobBuilder {
         if (json.keySet().contains('additionalParams')) {
             json.additionalParams.each { paramName ->
                 if (!PARAMS_LIST.keySet().contains(paramName)) {
-                    throw "Additional param not exists in list - need to had it"
+                    throw new Exeption("Additional param not exists in list - need to had it")
                 }
                  
                 m_lParamsList[paramName] = PARAMS_LIST[paramName]
 
                 if (paramName == "PLATFORM") {
                     if (json.keySet().contains('platformParam')) {
-                        if (! (json.defaultPlatform instanceof List))
+                        if (! (json.platformParam instanceof List))
                         {
-                            throw "platformParam must be a List"
+                            throw new Exeption("platformParam must be a List")
                         }
-                        
-                        m_lParamsList[paramName].defaultValue = json.defaultPlatform[0]
-                        m_lParamsList[paramName].description = m_lParamsList[paramName].description + ' [ ' + json.defaultPlatform.join(", ") + ' ]'
+
+                        m_lParamsList[paramName].defaultValue = json.platformParam[0]
+                        m_lParamsList[paramName].description = m_lParamsList[paramName].description + ' [ ' + json.platformParam.join(", ") + ' ]'
                     }
                 }
             }
