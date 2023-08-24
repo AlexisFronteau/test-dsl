@@ -24,7 +24,7 @@ class FirmwareBuildJobBuilder {
     boolean m_bHasDefaultParams = true
     def m_lParamsList = []
 
-    FirmwareBuildJobBuilder(base_dir, type, json) {
+    FirmwareBuildJobBuilder(dslFactory, base_dir, type, json) {
         m_sDirectory = base_dir
         if (json.path) {
             m_sDirectory += ('/' + json.path)
@@ -61,7 +61,9 @@ class FirmwareBuildJobBuilder {
 
         if (m_bHasDefaultParams) {
             m_lParamsList.FEATURE = new JsonSlurper().parseText(PARAMS_LIST.FEATURE)
+            dslFactory.out.println(m_lParamsList.FEATURE)
             m_lParamsList.BASE_BRANCH = new JsonSlurper().parseText(PARAMS_LIST.BASE_BRANCH)
+            dslFactory.out.println(m_lParamsList.BASE_BRANCH)
         }
 
         if (json.keySet().contains('additionalParams')) {
@@ -106,26 +108,46 @@ class FirmwareBuildJobBuilder {
     
             disabled(true)
 
-            if (m_bHasDefaultParams)
-            {
-                job.with {
-                    parameters {
-                        stringParam {
-                            name('FEATURE')
-                            defaultValue('None')
-                            description('The feature (branch) to select if it exists')
-                            trim(false)
-                        }
+            // if (m_bHasDefaultParams)
+            // {
+            //     job.with {
+            //         parameters {
+            //             stringParam {
+            //                 name('FEATURE')
+            //                 defaultValue('None')
+            //                 description('The feature (branch) to select if it exists')
+            //                 trim(false)
+            //             }
 
-                        stringParam {
-                            name('BASE_BRANCH')
-                            defaultValue("${m_sDefaultBaseBranch}")
-                            description('The branch on which to base the build')
-                            trim(false)
-                        }
-                    }
-                }
-            }
+            //             stringParam {
+            //                 name('BASE_BRANCH')
+            //                 defaultValue("${m_sDefaultBaseBranch}")
+            //                 description('The branch on which to base the build')
+            //                 trim(false)
+            //             }
+            //         }
+            //     }
+            // }
+
+            // if (!m_lParamsList.empty())
+            // {
+            //     parameters {
+            //         m_lParamsList.each { param -> 
+            //             switch (param.type) {
+            //                 case "string":
+            //                     stringParam {
+            //                         name(param.key)
+            //                         defaultValue(param.)
+            //                         description('The feature (branch) to select if it exists')
+            //                         trim(false)
+            //                     }
+            //                     break
+            //                 case "boolean":
+            //                     break;
+            //             }
+            //         }
+            //     }
+            // }
 
             // parameters {
             //     booleanParam(parameterName='FULL_BUILD', defaultValue=false, description='Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware')
