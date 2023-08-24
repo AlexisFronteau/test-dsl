@@ -8,10 +8,10 @@ import groovy.json.JsonSlurper
 class FirmwareBuildJobBuilder {
 
     static def PARAMS_LIST = [
-        "FULL_BUILD": '{ "type": "boolean", "default": false, "description": "Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware" }',
-        "FEATURE": '{ "type": "string", "default": "None", "description": "The feature (branch) to select if it exists" }',
-        "BASE_BRANCH": '{ "type": "string", "default": "master", "description": "The branch on which to base the build" }',
-        "PLATFORM": '{ "type": "string", "default": "None", "description": "The platform to be built" }'
+        "FULL_BUILD": [ type: "boolean", defaultValue: false, description: "Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware" ],
+        "FEATURE": [ type: "string", defaultValue: "None", description: "The feature (branch) to select if it exists" ],
+        "BASE_BRANCH": [ type: "string", defaultValue: "master", description: "The branch on which to base the build" ],
+        "PLATFORM": [ type: "string", defaultValue: "None", description: "The platform to be built" ]
     ]
 
     String m_sDirectory = ''
@@ -63,9 +63,9 @@ class FirmwareBuildJobBuilder {
 
         if (m_bHasDefaultParams) {
             dslFactory.out.println("Piou2")
-            m_lParamsList.FEATURE = new JsonSlurper().parseText(PARAMS_LIST.FEATURE)
+            m_lParamsList.FEATURE = PARAMS_LIST.FEATURE
             dslFactory.out.println(m_lParamsList.FEATURE)
-            m_lParamsList.BASE_BRANCH = new JsonSlurper().parseText(PARAMS_LIST.BASE_BRANCH)
+            m_lParamsList.BASE_BRANCH = PARAMS_LIST.BASE_BRANCH
             dslFactory.out.println(m_lParamsList.BASE_BRANCH)
         }
 
