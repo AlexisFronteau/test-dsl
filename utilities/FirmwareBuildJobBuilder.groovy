@@ -89,7 +89,7 @@ class FirmwareBuildJobBuilder {
 
                     if (!platformList.isEmpty())
                     {
-                        m_lParamsList.param.description = m_lParamsList.param.description + '[' + platformList.join(",") + ']'
+                        m_lParamsList.param.description = m_lParamsList.param.description + ' [ ' + platformList.join(", ") + ' ]'
                     }
                 }
             }
