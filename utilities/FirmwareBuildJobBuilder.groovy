@@ -71,7 +71,7 @@ class FirmwareBuildJobBuilder {
             }
         }
 
-        if (m_sLaunchAfterJob?.trim()) {
+        if (!m_sLaunchAfterJob.isEmpty()) {
             job.with {
                 properties {
                     pipelineTriggers {
