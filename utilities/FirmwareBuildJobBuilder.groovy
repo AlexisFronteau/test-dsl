@@ -68,16 +68,16 @@ class FirmwareBuildJobBuilder {
         if (json.keySet().contains('additionalParams')) {
             json.additionalParams.each { paramName ->
                 if (!PARAMS_LIST.keySet().contains(paramName)) {
-                    throw new Exeption("Additional param not exists in list - need to had it")
+                    throw new Exception("Additional param not exists in list - need to had it")
                 }
                  
                 m_lParamsList[paramName] = PARAMS_LIST[paramName]
 
                 if (paramName == "PLATFORM") {
                     if (json.keySet().contains('platformParam')) {
-                        if (! (json.platformParam instanceof List))
+                        if (!(json.platformParam instanceof List))
                         {
-                            throw new Exeption("platformParam must be a List")
+                            throw new Exception("platformParam must be a List")
                         }
 
                         m_lParamsList[paramName].defaultValue = json.platformParam[0]
@@ -95,7 +95,7 @@ class FirmwareBuildJobBuilder {
         def job = dslFactory.pipelineJob(m_sDirectory + '/' + m_sJobName)
 
         job.with {
-            description("Build firmware from ${m_sRepo_name} after ${m_sLaunchAfterJob} and ${m_bLaunchNightly}")
+            description("Build firmware from ${m_sRepo_name}")
     
             disabled(true)
 
