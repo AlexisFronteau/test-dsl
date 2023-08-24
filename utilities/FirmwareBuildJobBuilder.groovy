@@ -57,31 +57,31 @@ class FirmwareBuildJobBuilder {
 
         def job = dslFactory.pipelineJob(m_sDirectory + '/' + m_sJobName)
 
-        if (m_bHasDefaultParams)
-        {
-            job.with {
-                parameters {
-                    stringParam {
-                        name('FEATURE')
-                        defaultValue('None')
-                        description('The feature (branch) to select if it exists')
-                        trim(false)
-                    }
-
-                    stringParam {
-                        name('BASE_BRANCH')
-                        defaultValue("${m_sDefaultBaseBranch}")
-                        description('The branch on which to base the build')
-                        trim(false)
-                    }
-                }
-            }
-        }
-
         job.with {
             description("Build firmware from ${m_sRepo_name} after ${m_sLaunchAfterJob} and ${m_bLaunchNightly}")
     
             disabled(true)
+
+            if (m_bHasDefaultParams)
+            {
+                job.with {
+                    parameters {
+                        stringParam {
+                            name('FEATURE')
+                            defaultValue('None')
+                            description('The feature (branch) to select if it exists')
+                            trim(false)
+                        }
+
+                        stringParam {
+                            name('BASE_BRANCH')
+                            defaultValue("${m_sDefaultBaseBranch}")
+                            description('The branch on which to base the build')
+                            trim(false)
+                        }
+                    }
+                }
+            }
 
             // parameters {
             //     booleanParam(parameterName='FULL_BUILD', defaultValue=false, description='Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware')
@@ -149,34 +149,5 @@ class FirmwareBuildJobBuilder {
                 }
             }
         }
-
-        // if (m_bLaunchNightly == true) {
-        //     job.with {
-        //         properties {
-        //             pipelineTriggers {
-        //                 triggers {
-        //                     cron {
-        //                         spec("H 0 * * *")
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-        // if (!m_sLaunchAfterJob.isEmpty()) {
-        //     job.with {
-        //         properties {
-        //             pipelineTriggers {
-        //                 triggers {
-        //                     upstream {
-        //                         upstreamProjects("${m_sLaunchAfterJob}")
-        //                         threshold('SUCCESS')
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
