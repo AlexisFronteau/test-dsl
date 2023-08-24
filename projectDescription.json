@@ -1,7 +1,8 @@
 {
 	"jobs": {
 		"build" : [
-			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw" }
+			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw" },
+			{ "path" : "SOC", "jobName" : "SOC_APP", "repo" : "soc_app", "launchAfterJob" : "SOC_DOCKER" }
 		]
 	},
 	"multibranch": {

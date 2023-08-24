@@ -32,6 +32,14 @@ class FirmwareBuildJobBuilder {
         }
 
         m_sType = type
+
+        if (json.launchAfterJob){
+            m_sLaunchAfterJob = json.launchAfterJob
+        }
+
+        if (json.launchNightly) {
+            m_bLaunchNightly = json.launchNightly
+        }
     }
 
     void generate_pipeline(dslFactory) {
