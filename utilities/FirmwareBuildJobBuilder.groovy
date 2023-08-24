@@ -91,7 +91,7 @@ class FirmwareBuildJobBuilder {
                 }
                 
                 durabilityHint {
-                    hint(value='PERFORMANCE_OPTIMIZED')
+                    hint('PERFORMANCE_OPTIMIZED')
                 }
                 
                 pipelineTriggers {
@@ -107,14 +107,14 @@ class FirmwareBuildJobBuilder {
                 cpsScm {
                     scm {
                         git {
-                            branch(branch='master')
+                            branch("${m_sDefaultBaseBranch}")
                             remote {
                                 credentials(credentials='jenkins-github-ssh')
                                 github(ownerAndProject="xofym/${m_sRepo_name}", protocol='ssh')
                             }
                             extensions {
                                 localBranch {
-                                    localBranch(value = 'master')
+                                    localBranch("${m_sDefaultBaseBranch}")
                                 }
                             }
                         }
