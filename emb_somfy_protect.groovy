@@ -58,7 +58,7 @@ projects.multibranch.unittests.each { multibranch ->
 // 	builder.generate_pipeline(this)
 // }
 
-projects.jobs.each { key, job ->
+projects.jobs.each { key, _ ->
 	this.out.println("jobType " + key)
 	projects.jobs[key].each { job -> 
 		this.out.println("job " + job)
