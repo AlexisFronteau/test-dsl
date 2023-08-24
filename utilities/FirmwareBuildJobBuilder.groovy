@@ -24,7 +24,7 @@ class FirmwareBuildJobBuilder {
     boolean m_bHasDefaultParams = true
     def m_lParamsList = [:]
 
-    FirmwareBuildJobBuilder(dslFactory, base_dir, type, json) {
+    FirmwareBuildJobBuilder(type, json) {
         m_sDirectory = base_dir
         if (json.keySet().contains('path')) {
             m_sDirectory += ('/' + json.path)
