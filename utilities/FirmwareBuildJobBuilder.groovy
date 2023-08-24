@@ -90,8 +90,19 @@ class FirmwareBuildJobBuilder {
         {
             job.with {
                 parameters {
-                    stringParam(parameterName='FEATURE', defaultValue='None', description='The feature (branch) to select if it exists')
-                    stringParam(parameterName='BASE_BRANCH', defaultValue="${m_sDefaultBaseBranch}", description='The branch on which to base the build')
+                    stringParam {
+                        name('FEATURE') 
+                        defaultValue('None'), 
+                        description('The feature (branch) to select if it exists')
+                        trim(false)
+                    }
+
+                    stringParam {
+                        name('BASE_BRANCH') 
+                        defaultValue("${m_sDefaultBaseBranch}"), 
+                        description('The branch on which to base the build')
+                        trim(false)
+                    }
                 }
             }
         }
