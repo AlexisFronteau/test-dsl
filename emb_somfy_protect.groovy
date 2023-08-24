@@ -53,10 +53,10 @@ projects.multibranch.unittests.each { multibranch ->
 	MultibranchJobBuilder.multibranch(this, "unit-tests", path, repo_name)
 }
 
-projects.jobs.build.each { job ->
-	def builder = new FirmwareBuildJobBuilder(this, base_dir, "build", job)
-	builder.generate_pipeline(this)
-}
+// projects.jobs.build.each { job ->
+// 	def builder = new FirmwareBuildJobBuilder(this, base_dir, "build", job)
+// 	builder.generate_pipeline(this)
+// }
 
 projects.jobs.each { jobType ->
 	projects.jobs[jobType].each { job ->
