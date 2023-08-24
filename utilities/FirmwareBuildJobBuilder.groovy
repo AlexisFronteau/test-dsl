@@ -34,6 +34,7 @@ class FirmwareBuildJobBuilder {
         m_sType = type
 
         if (json.launchAfterJob){
+            println("Launch After Job : " + m_sLaunchAfterJob)
             m_sLaunchAfterJob = json.launchAfterJob
         }
 
@@ -63,6 +64,7 @@ class FirmwareBuildJobBuilder {
         }
 
         if (m_sLaunchAfterJob != '') {
+            println("Check Launch After Job : " + m_sLaunchAfterJob)
             job.with {
                 properties {
                     pipelineTriggers {
