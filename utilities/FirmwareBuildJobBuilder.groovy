@@ -10,7 +10,7 @@ class FirmwareBuildJobBuilder {
     String m_sJobName = ''
     String m_sRepo_name = ''
     boolean m_bLaunchNightly = true
-    boolean m_sLaunchAfterJob = ''
+    String m_sLaunchAfterJob = ''
     String m_sDefaultBaseBranch = 'master'
     String m_sType = ''
 
@@ -33,10 +33,7 @@ class FirmwareBuildJobBuilder {
 
         m_sType = type
 
-        println("TEST : " + json.launchAfterJob)
-
         if (json.launchAfterJob) {
-            println("Launch After Job : " + m_sLaunchAfterJob)
             m_sLaunchAfterJob = json.launchAfterJob
         }
 
@@ -66,7 +63,6 @@ class FirmwareBuildJobBuilder {
         }
 
         if (m_sLaunchAfterJob != '') {
-            println("Check Launch After Job : " + m_sLaunchAfterJob)
             job.with {
                 properties {
                     pipelineTriggers {
@@ -82,7 +78,7 @@ class FirmwareBuildJobBuilder {
         }
 
         job.with {
-            description("Build firmware from ${m_sRepo_name} & ${m_sLaunchAfterJob}")
+            description("Build firmware from ${m_sRepo_name}")
     
             disabled(true)
 
