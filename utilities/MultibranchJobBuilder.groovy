@@ -40,7 +40,7 @@ class MultibranchJobBuilder {
 
   }
 
-  static void multibranch(dslFactory) {
+  void generate_multibranch(dslFactory) {
 
     dslFactory.folder(m_sDirectory)
 
