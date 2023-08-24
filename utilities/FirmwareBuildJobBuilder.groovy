@@ -67,7 +67,7 @@ class FirmwareBuildJobBuilder {
         }
 
         job.with {
-            description("Build firmware from ${repo_name}")
+            description("Build firmware from ${m_sRepo_name}")
     
             // parameters {
             //     booleanParam(parameterName='FULL_BUILD', defaultValue=false, description='Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware')
@@ -79,7 +79,7 @@ class FirmwareBuildJobBuilder {
             logRotator(daysToKeep = 5, numToKeep = 5, artifactDaysToKeep = -1, artifactNumToKeep = -1)
             
             properties {
-                githubProjectUrl("git@github.com:xofym/${repo_name}.git/")
+                githubProjectUrl("git@github.com:xofym/${m_sRepo_name}.git/")
                 
                 disableConcurrentBuilds {
                 abortPrevious(value=false)
@@ -105,7 +105,7 @@ class FirmwareBuildJobBuilder {
                             branch(branch='master')
                             remote {
                                 credentials(credentials='jenkins-github-ssh')
-                                github(ownerAndProject="xofym/${repo_name}", protocol='ssh')
+                                github(ownerAndProject="xofym/${m_sRepo_name}", protocol='ssh')
                             }
                             extensions {
                                 localBranch {
