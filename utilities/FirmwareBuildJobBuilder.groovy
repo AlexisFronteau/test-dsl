@@ -57,35 +57,6 @@ class FirmwareBuildJobBuilder {
 
         def job = dslFactory.pipelineJob(m_sDirectory + '/' + m_sJobName)
 
-        if (m_bLaunchNightly == true) {
-            job.with {
-                properties {
-                    pipelineTriggers {
-                        triggers {
-                            cron {
-                                spec("H 0 * * *")
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        if (!m_sLaunchAfterJob.isEmpty()) {
-            job.with {
-                properties {
-                    pipelineTriggers {
-                        triggers {
-                            upstream {
-                                upstreamProjects("${m_sLaunchAfterJob}")
-                                threshold('SUCCESS')
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         if (m_bHasDefaultParams)
         {
             job.with {
@@ -134,11 +105,24 @@ class FirmwareBuildJobBuilder {
                 durabilityHint {
                     hint('PERFORMANCE_OPTIMIZED')
                 }
-                
-                pipelineTriggers {
-                    triggers {
-                        cron {
-                            spec("H 0 * * *")
+
+                if (m_bLaunchNightly == true) {
+                    pipelineTriggers {
+                        triggers {
+                            cron {
+                                spec("H 0 * * *")
+                            }
+                        }
+                    }
+                }
+
+                if (!m_sLaunchAfterJob.isEmpty()) {
+                    pipelineTriggers {
+                        triggers {
+                            upstream {
+                                upstreamProjects("${m_sLaunchAfterJob}")
+                                threshold('SUCCESS')
+                            }
                         }
                     }
                 }
@@ -165,5 +149,34 @@ class FirmwareBuildJobBuilder {
                 }
             }
         }
+
+        // if (m_bLaunchNightly == true) {
+        //     job.with {
+        //         properties {
+        //             pipelineTriggers {
+        //                 triggers {
+        //                     cron {
+        //                         spec("H 0 * * *")
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+        // if (!m_sLaunchAfterJob.isEmpty()) {
+        //     job.with {
+        //         properties {
+        //             pipelineTriggers {
+        //                 triggers {
+        //                     upstream {
+        //                         upstreamProjects("${m_sLaunchAfterJob}")
+        //                         threshold('SUCCESS')
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
