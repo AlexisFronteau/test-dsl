@@ -75,7 +75,8 @@ class FirmwareBuildJobBuilder {
                     throw "Additional param not exists in list - need to had it"
                 }
                  
-                m_lParamsList.param = PARAMS_LIST.param
+                m_lParamsList.param = PARAMS_LIST[param]
+                dslFactory.out.println(param + " : " + m_lParamsList.param)
 
                 if (param == "PLATFORM") {
                     def platformList = []
