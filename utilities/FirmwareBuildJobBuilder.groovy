@@ -66,18 +66,18 @@ class FirmwareBuildJobBuilder {
         }
 
         if (json.keySet().contains('additionalParams')) {
-            json.additionalParams.each { param ->
-                if (!PARAMS_LIST.keySet().contains(param)) {
+            json.additionalParams.each { paramName ->
+                if (!PARAMS_LIST.keySet().contains(paramName)) {
                     throw "Additional param not exists in list - need to had it"
                 }
                  
-                m_lParamsList.param = PARAMS_LIST[param]
+                m_lParamsList[paramName] = PARAMS_LIST[paramName]
 
-                if (param == "PLATFORM") {
+                if (paramName == "PLATFORM") {
                     def platformList = []
 
                     if (json.keySet().contains('defaultPlatform')) {
-                        m_lParamsList.param.defaultValue = json.defaultPlatform
+                        m_lParamsList[paramName].defaultValue = json.defaultPlatform
                         platformList.add(json.defaultPlatform)
                     }
 
@@ -89,7 +89,7 @@ class FirmwareBuildJobBuilder {
 
                     if (!platformList.isEmpty())
                     {
-                        m_lParamsList.param.description = m_lParamsList.param.description + ' [ ' + platformList.join(", ") + ' ]'
+                        m_lParamsList[paramName].description = m_lParamsList[paramName].description + ' [ ' + platformList.join(", ") + ' ]'
                     }
                 }
             }
