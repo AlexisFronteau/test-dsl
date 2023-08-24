@@ -61,9 +61,7 @@ projects.multibranch.each { key, _ ->
 }
 
 projects.jobs.each { key, _ ->
-	this.out.println("jobType " + key)
 	projects.jobs[key].each { job -> 
-		this.out.println("job " + job)
 		def builder = new FirmwareBuildJobBuilder(base_dir, key, job)
 		builder.generate_pipeline(this)
 	}
