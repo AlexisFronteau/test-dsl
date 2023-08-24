@@ -12,8 +12,9 @@ class FirmwareBuildJobBuilder {
     boolean m_bLaunchNightly = true
     boolean m_sLaunchAfterJob = ''
     String m_sDefaultBaseBranch = 'master'
+    String m_sType = ''
 
-    FirmwareBuildJobBuilder(base_dir, json) {
+    FirmwareBuildJobBuilder(base_dir, type, json) {
         m_sDirectory = base_dir
         if (json.path) {
             m_sDirectory += ('/' + json.path)
@@ -29,6 +30,8 @@ class FirmwareBuildJobBuilder {
         if (json.repo) {
             m_sRepo_name = json.repo
         }
+
+        m_sType = type
     }
 
     void generate_pipeline(dslFactory) {
@@ -109,8 +112,8 @@ class FirmwareBuildJobBuilder {
                         git {
                             branch("${m_sDefaultBaseBranch}")
                             remote {
-                                credentials(credentials='jenkins-github-ssh')
-                                github(ownerAndProject="xofym/${m_sRepo_name}", protocol='ssh')
+                                credentials('jenkins-github-ssh')
+                                github(ownerAndProject: "xofym/${m_sRepo_name}", protocol: 'ssh')
                             }
                             extensions {
                                 localBranch {
@@ -119,8 +122,8 @@ class FirmwareBuildJobBuilder {
                             }
                         }
                     }
-                    lightweight(lightweight = true)
-                    scriptPath(scriptPath = 'ci/Jenkinsfile.build')
+                    lightweight(true)
+                    scriptPath('ci/Jenkinsfile.' + m_sType)
                 }
             }
         }
