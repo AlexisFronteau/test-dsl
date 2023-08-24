@@ -69,6 +69,8 @@ class FirmwareBuildJobBuilder {
         job.with {
             description("Build firmware from ${m_sRepo_name}")
     
+            disabled(true)
+
             // parameters {
             //     booleanParam(parameterName='FULL_BUILD', defaultValue=false, description='Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware')
             //     stringParam(parameterName='FEATURE', defaultValue='None', description='The feature (branch) to select if it exists')
@@ -84,10 +86,8 @@ class FirmwareBuildJobBuilder {
             }
 
             properties {
-                githubProjectUrl("git@github.com:xofym/${m_sRepo_name}.git/")
-                
                 disableConcurrentBuilds {
-                    abortPrevious(value=false)
+                    abortPrevious(false)
                 }
                 
                 durabilityHint {
