@@ -21,10 +21,10 @@ class FirmwareBuildJobBuilder {
             m_sDirectory += ('/' + json.path)
         }
 
-        dsl_factory.out.println('jobName' + json.jobName)
-        dsl_factory.out.println('repo' + json.repo)
-        dsl_factory.out.println('launchNightly' + json.launchNightly)
-        dsl_factory.out.println('launchAfterJob' + json.launchAfterJob)
+        dsl_factory.out.println('jobName ' + json.jobName)
+        dsl_factory.out.println('repo ' + json.repo)
+        dsl_factory.out.println('launchNightly ' + json.launchNightly)
+        dsl_factory.out.println('launchAfterJob ' + json.launchAfterJob)
 
         if (json.jobName) {
             m_sJobName = json.jobName
@@ -41,10 +41,12 @@ class FirmwareBuildJobBuilder {
 
         if (json.launchAfterJob) {
             m_sLaunchAfterJob = json.launchAfterJob
+            dsl_factory.out.println('m_sLaunchAfterJob ' + m_sLaunchAfterJob)
         }
 
         if (json.launchNightly) {
             m_bLaunchNightly = json.launchNightly
+            dsl_factory.out.println('m_bLaunchNightly ' + m_bLaunchNightly)
         }
 
         if (json.hasDefaultParams) {
@@ -54,6 +56,11 @@ class FirmwareBuildJobBuilder {
         if (json.baseBranch) {
             m_sDefaultBaseBranch = json.baseBranch
         }
+
+        dsl_factory.out.println('jobName ' + m_sJobName)
+        dsl_factory.out.println('repo ' + m_sRepo_name)
+        dsl_factory.out.println('m_bLaunchNightly ' + m_bLaunchNightly)
+        dsl_factory.out.println('m_sLaunchAfterJob ' + m_sLaunchAfterJob)
     }
 
     void generate_pipeline(dslFactory) {
