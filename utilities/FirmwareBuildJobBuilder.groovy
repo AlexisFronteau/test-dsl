@@ -26,34 +26,34 @@ class FirmwareBuildJobBuilder {
         dsl_factory.out.println('launchNightly ' + json.launchNightly)
         dsl_factory.out.println('launchAfterJob ' + json.launchAfterJob)
 
-        if (json.jobName) {
+        if (json.keySet().contains('jobName')) {
             m_sJobName = json.jobName
         }
-        else if (json.repo) {
+        else if (json.keySet().contains('repo')) {
             m_sJobName = json.repo.upper()
         }
 
-        if (json.repo) {
+        if (json.keySet().contains('repo')) {
             m_sRepo_name = json.repo
         }
 
         m_sType = type
 
-        if (json.launchAfterJob) {
+        if (json.keySet().contains('launchAfterJob')) {
             m_sLaunchAfterJob = json.launchAfterJob
             dsl_factory.out.println('m_sLaunchAfterJob ' + m_sLaunchAfterJob)
         }
 
-        if (json.launchNightly) {
+        if (json.keySet().contains('launchNightly')) {
             m_bLaunchNightly = json.launchNightly
             dsl_factory.out.println('m_bLaunchNightly ' + m_bLaunchNightly)
         }
 
-        if (json.hasDefaultParams) {
+        if (json.keySet().contains('hasDefaultParams')) {
             m_bHasDefaultParams = hasDefaultParams
         }
 
-        if (json.baseBranch) {
+        if (json.keySet().contains('baseBranch')) {
             m_sDefaultBaseBranch = json.baseBranch
         }
 
