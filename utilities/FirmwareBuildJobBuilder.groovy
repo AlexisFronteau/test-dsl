@@ -9,9 +9,9 @@ class FirmwareBuildJobBuilder {
     String m_sDirectory = ''
     String m_sJobName = ''
     String m_sRepo_name = ''
-    boolean m_launchNightly = true
-    boolean m_launchAfterJob = ''
-    String m_defaultBaseBranch = 'master'
+    boolean m_bLaunchNightly = true
+    boolean m_sLaunchAfterJob = ''
+    String m_sDefaultBaseBranch = 'master'
 
     FirmwareBuildJobBuilder(base_dir, json) {
         m_sDirectory = base_dir
@@ -37,7 +37,7 @@ class FirmwareBuildJobBuilder {
 
         def job = dslFactory.pipelineJob(m_sDirectory + '/' + m_sJobName)
 
-        if (m_launchNightly == true) {
+        if (m_bLaunchNightly == true) {
             job.with {
                 properties {
                     pipelineTriggers {
@@ -51,13 +51,13 @@ class FirmwareBuildJobBuilder {
             }
         }
 
-        if (m_launchAfterJob != '') {
+        if (m_sLaunchAfterJob != '') {
             job.with {
                 properties {
                     pipelineTriggers {
                         triggers {
                             upstream {
-                                upstreamProjects(launchAfterJob)
+                                upstreamProjects("${m_sLaunchAfterJob}")
                                 threshold('SUCCESS')
                             }
                         }
