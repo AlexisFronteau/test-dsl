@@ -22,7 +22,7 @@ class FirmwareBuildJobBuilder {
     String m_sDefaultBaseBranch = 'master'
     String m_sType = ''
     boolean m_bHasDefaultParams = true
-    def m_lParamsList = []
+    def m_lParamsList = [:]
 
     FirmwareBuildJobBuilder(dslFactory, base_dir, type, json) {
         m_sDirectory = base_dir
