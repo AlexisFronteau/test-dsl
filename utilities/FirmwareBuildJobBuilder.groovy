@@ -15,16 +15,16 @@ class FirmwareBuildJobBuilder {
     String m_sType = ''
     boolean m_bHasDefaultParams = true
 
-    FirmwareBuildJobBuilder(base_dir, type, json) {
+    FirmwareBuildJobBuilder(dsl_factory, base_dir, type, json) {
         m_sDirectory = base_dir
         if (json.path) {
             m_sDirectory += ('/' + json.path)
         }
 
-        out.println('jobName' + json.jobName)
-        out.println('repo' + json.repo)
-        out.println('launchNightly' + json.launchNightly)
-        out.println('launchAfterJob' + json.launchAfterJob)
+        dsl_factory.out.println('jobName' + json.jobName)
+        dsl_factory.out.println('repo' + json.repo)
+        dsl_factory.out.println('launchNightly' + json.launchNightly)
+        dsl_factory.out.println('launchAfterJob' + json.launchAfterJob)
 
         if (json.jobName) {
             m_sJobName = json.jobName
