@@ -59,14 +59,10 @@ class FirmwareBuildJobBuilder {
             m_sDefaultBaseBranch = json.baseBranch
         }
         
-        dslFactory.out.println("Piou1")
-
+        // Set FEATURE and BASE_BRANCH as default parameters 
         if (m_bHasDefaultParams) {
-            dslFactory.out.println("Piou2")
             m_lParamsList.FEATURE = PARAMS_LIST.FEATURE
-            dslFactory.out.println(m_lParamsList.FEATURE)
             m_lParamsList.BASE_BRANCH = PARAMS_LIST.BASE_BRANCH
-            dslFactory.out.println(m_lParamsList.BASE_BRANCH)
         }
 
         if (json.keySet().contains('additionalParams')) {
@@ -76,7 +72,6 @@ class FirmwareBuildJobBuilder {
                 }
                  
                 m_lParamsList.param = PARAMS_LIST[param]
-                dslFactory.out.println(param + " : " + m_lParamsList.param)
 
                 if (param == "PLATFORM") {
                     def platformList = []
@@ -97,8 +92,6 @@ class FirmwareBuildJobBuilder {
                         m_lParamsList.param.description = m_lParamsList.param.description + '[' + platformList.join(",") + ']'
                     }
                 }
-
-                dslFactory.out.println(param + " : " + m_lParamsList.param)
             }
         }
     }
@@ -114,46 +107,31 @@ class FirmwareBuildJobBuilder {
     
             disabled(true)
 
-            // if (m_bHasDefaultParams)
-            // {
-            //     job.with {
-            //         parameters {
-            //             stringParam {
-            //                 name('FEATURE')
-            //                 defaultValue('None')
-            //                 description('The feature (branch) to select if it exists')
-            //                 trim(false)
-            //             }
-
-            //             stringParam {
-            //                 name('BASE_BRANCH')
-            //                 defaultValue("${m_sDefaultBaseBranch}")
-            //                 description('The branch on which to base the build')
-            //                 trim(false)
-            //             }
-            //         }
-            //     }
-            // }
-
-            // if (!m_lParamsList.empty())
-            // {
-            //     parameters {
-            //         m_lParamsList.each { param -> 
-            //             switch (param.type) {
-            //                 case "string":
-            //                     stringParam {
-            //                         name(param.key)
-            //                         defaultValue(param.)
-            //                         description('The feature (branch) to select if it exists')
-            //                         trim(false)
-            //                     }
-            //                     break
-            //                 case "boolean":
-            //                     break;
-            //             }
-            //         }
-            //     }
-            // }
+            if (!m_lParamsList.empty())
+            {
+                parameters {
+                    m_lParamsList.each { key, param -> 
+                        switch (param.type) {
+                            case "string":
+                                stringParam {
+                                    name(key)
+                                    defaultValue(param.defaultValue)
+                                    description(param.description)
+                                    trim(false)
+                                }
+                                break
+                            case "boolean":
+                                booleanParam {
+                                    name(key)
+                                    defaultValue(param.defaultValue)
+                                    description(param.description)
+                                    trim(false)
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
 
             // parameters {
             //     booleanParam(parameterName='FULL_BUILD', defaultValue=false, description='Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware')
