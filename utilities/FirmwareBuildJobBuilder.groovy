@@ -52,7 +52,7 @@ class FirmwareBuildJobBuilder {
         }
 
         if (json.keySet().contains('hasDefaultParams')) {
-            m_bHasDefaultParams = hasDefaultParams
+            m_bHasDefaultParams = json.hasDefaultParams
         }
 
         if (json.keySet().contains('baseBranch')) {
