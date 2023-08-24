@@ -58,43 +58,46 @@ class FirmwareBuildJobBuilder {
         if (json.keySet().contains('baseBranch')) {
             m_sDefaultBaseBranch = json.baseBranch
         }
+        
+        dslFactory.out.println("Piou1")
 
         if (m_bHasDefaultParams) {
+            dslFactory.out.println("Piou2")
             m_lParamsList.FEATURE = new JsonSlurper().parseText(PARAMS_LIST.FEATURE)
             dslFactory.out.println(m_lParamsList.FEATURE)
             m_lParamsList.BASE_BRANCH = new JsonSlurper().parseText(PARAMS_LIST.BASE_BRANCH)
             dslFactory.out.println(m_lParamsList.BASE_BRANCH)
         }
 
-        if (json.keySet().contains('additionalParams')) {
-            json.additionalParams.each { param ->
-                if (!PARAMS_LIST.keySet().contains(param)) {
-                    throw "Additional param not exists in list - need to had it"
-                }
+        // if (json.keySet().contains('additionalParams')) {
+        //     json.additionalParams.each { param ->
+        //         if (!PARAMS_LIST.keySet().contains(param)) {
+        //             throw "Additional param not exists in list - need to had it"
+        //         }
                  
-                m_lParamsList.param = new JsonSlurper().parseText(PARAMS_LIST.param)
+        //         m_lParamsList.param = new JsonSlurper().parseText(PARAMS_LIST.param)
 
-                if (param == "PLATFORM") {
-                    def platformList = []
+        //         if (param == "PLATFORM") {
+        //             def platformList = []
 
-                    if (json.keySet().contains('defaultPlatform')) {
-                        m_lParamsList.param.default = json.defaultPlatform
-                        platformList.add(json.defaultPlatform)
-                    }
+        //             if (json.keySet().contains('defaultPlatform')) {
+        //                 m_lParamsList.param.default = json.defaultPlatform
+        //                 platformList.add(json.defaultPlatform)
+        //             }
 
-                    if (json.keySet().contains('additionalPlatform')) {
-                        json.additionalPlatform.each { platform -> 
-                            platformList.add(platform)
-                        }
-                    }
+        //             if (json.keySet().contains('additionalPlatform')) {
+        //                 json.additionalPlatform.each { platform -> 
+        //                     platformList.add(platform)
+        //                 }
+        //             }
 
-                    if (!platformList.isEmpty())
-                    {
-                        m_lParamsList.param.description = m_lParamsList.param.description + '[' + platformList.join(",") + ']'
-                    }
-                }
-            }
-        }
+        //             if (!platformList.isEmpty())
+        //             {
+        //                 m_lParamsList.param.description = m_lParamsList.param.description + '[' + platformList.join(",") + ']'
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     void generate_pipeline(dslFactory) {
