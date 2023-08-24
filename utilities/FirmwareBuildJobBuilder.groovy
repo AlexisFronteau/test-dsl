@@ -76,23 +76,28 @@ class FirmwareBuildJobBuilder {
             //     stringParam(parameterName='PLATFORM', defaultValue="$platform", description="The platform to be built ($platform_list)")
             // }
             
-            logRotator(daysToKeep = 5, numToKeep = 5, artifactDaysToKeep = -1, artifactNumToKeep = -1)
-            
+            logRotator {
+                numToKeep(5)
+                daysToKeep(-1)
+                artifactDaysToKeep(-1)
+                artifactNumToKeep(-1)
+            }
+
             properties {
                 githubProjectUrl("git@github.com:xofym/${m_sRepo_name}.git/")
                 
                 disableConcurrentBuilds {
-                abortPrevious(value=false)
+                    abortPrevious(value=false)
                 }
                 
                 durabilityHint {
-                hint(value='PERFORMANCE_OPTIMIZED')
+                    hint(value='PERFORMANCE_OPTIMIZED')
                 }
                 
                 pipelineTriggers {
                     triggers {
                         cron {
-                        spec("H 0 * * *")
+                            spec("H 0 * * *")
                         }
                     }
                 }
