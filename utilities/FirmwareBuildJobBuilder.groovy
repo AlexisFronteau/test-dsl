@@ -1,10 +1,18 @@
 package utilities
+import groovy.json.JsonSlurper
 
 /**
  * Generates jobs that check if code is correclty formatted
  */
 
 class FirmwareBuildJobBuilder {
+
+    static def PARAMS_LIST = [
+        "FULL_BUILD": { "type": "boolean", "default": false, "description": "Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware" },
+        "FEATURE": { "type": "string", "default": "None", "description": "The feature (branch) to select if it exists" },
+        "BASE_BRANCH": { "type": "string", "default": "master", "description": "The branch on which to base the build" },
+        "PLATFORM": { "type": "string", "default": "None", "description": "The platform to be built" }
+    ]
 
     String m_sDirectory = ''
     String m_sJobName = ''
@@ -14,17 +22,13 @@ class FirmwareBuildJobBuilder {
     String m_sDefaultBaseBranch = 'master'
     String m_sType = ''
     boolean m_bHasDefaultParams = true
+    def m_lParamsList = []
 
-    FirmwareBuildJobBuilder(dsl_factory, base_dir, type, json) {
+    FirmwareBuildJobBuilder(base_dir, type, json) {
         m_sDirectory = base_dir
         if (json.path) {
             m_sDirectory += ('/' + json.path)
         }
-
-        dsl_factory.out.println('jobName ' + json.jobName)
-        dsl_factory.out.println('repo ' + json.repo)
-        dsl_factory.out.println('launchNightly ' + json.launchNightly)
-        dsl_factory.out.println('launchAfterJob ' + json.launchAfterJob)
 
         if (json.keySet().contains('jobName')) {
             m_sJobName = json.jobName
@@ -41,12 +45,10 @@ class FirmwareBuildJobBuilder {
 
         if (json.keySet().contains('launchAfterJob')) {
             m_sLaunchAfterJob = json.launchAfterJob
-            dsl_factory.out.println('m_sLaunchAfterJob ' + m_sLaunchAfterJob)
         }
 
         if (json.keySet().contains('launchNightly')) {
             m_bLaunchNightly = json.launchNightly
-            dsl_factory.out.println('m_bLaunchNightly ' + m_bLaunchNightly)
         }
 
         if (json.keySet().contains('hasDefaultParams')) {
@@ -57,10 +59,40 @@ class FirmwareBuildJobBuilder {
             m_sDefaultBaseBranch = json.baseBranch
         }
 
-        dsl_factory.out.println('jobName ' + m_sJobName)
-        dsl_factory.out.println('repo ' + m_sRepo_name)
-        dsl_factory.out.println('m_bLaunchNightly ' + m_bLaunchNightly)
-        dsl_factory.out.println('m_sLaunchAfterJob ' + m_sLaunchAfterJob)
+        if (m_bHasDefaultParams) {
+            m_lParamsList.FEATURE = new JsonSlurper().parseText(PARAMS_LIST.FEATURE)
+            m_lParamsList.BASE_BRANCH = new JsonSlurper().parseText(PARAMS_LIST.BASE_BRANCH)
+        }
+
+        if (json.keySet().contains('additionalParams')) {
+            json.additionalParams.each { param ->
+                if (!PARAMS_LIST.keySet().contains(param)) {
+                    throw "Additional param not exists in list - need to had it"
+                }
+                 
+                m_lParamsList.param = new JsonSlurper().parseText(PARAMS_LIST.param)
+
+                if (param == "PLATFORM") {
+                    def platformList = []
+
+                    if (json.keySet().contains('defaultPlatform')) {
+                        m_lParamsList.param.default = json.defaultPlatform
+                        platformList.add(json.defaultPlatform)
+                    }
+
+                    if (json.keySet().contains('additionalPlatform')) {
+                        json.additionalPlatform.each { platform -> 
+                            platformList.add(platform)
+                        }
+                    }
+
+                    if (!platformList.isEmpty())
+                    {
+                        m_lParamsList.param.description = m_lParamsList.param.description + '[' + platformList.join(",") + ']'
+                    }
+                }
+            }
+        }
     }
 
     void generate_pipeline(dslFactory) {

@@ -1,7 +1,7 @@
 {
 	"jobs": {
 		"build" : [
-			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw" },
+			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ] },
 			{ "path" : "SOC", "jobName" : "SOC_APP", "repo" : "soc_app", "launchAfterJob" : "SOC_DOCKER", "launchNightly": false }
 		]
 	},

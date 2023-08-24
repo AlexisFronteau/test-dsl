@@ -54,6 +54,6 @@ projects.multibranch.unittests.each { multibranch ->
 }
 
 projects.jobs.build.each { job ->
-	def builder = new FirmwareBuildJobBuilder(this, base_dir, "build", job)
+	def builder = new FirmwareBuildJobBuilder(base_dir, "build", job)
 	builder.generate_pipeline(this)
 }
