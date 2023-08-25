@@ -48,6 +48,8 @@ class MultibranchJobBuilder {
     job.with {
       description('Check clang-format on PR on repository ' + m_sRepoName)
       
+      disabled()
+
       branchSources {
         branchSource {
           source {
