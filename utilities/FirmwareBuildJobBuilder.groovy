@@ -34,7 +34,7 @@ class FirmwareBuildJobBuilder {
             m_sJobName = json.jobName
         }
         else if (json.keySet().contains('repo')) {
-            m_sJobName = json.repo.upper()
+            m_sJobName = json.repo.toUpperCase()
         }
 
         if (json.keySet().contains('repo')) {
