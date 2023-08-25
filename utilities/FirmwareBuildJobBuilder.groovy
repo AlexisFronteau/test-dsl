@@ -236,7 +236,7 @@ class FirmwareBuildJobBuilder {
                         branch(branch='master')
                         remote {
                             credentials(credentials='jenkins-github-ssh')
-                            github(ownerAndProject="xofym/${repo_name}", protocol='ssh')
+                            github(ownerAndProject="xofym/BE-CI-Tools", protocol='ssh')
                         }
                         extensions {
                             pathRestriction {
