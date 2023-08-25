@@ -238,10 +238,10 @@ class FirmwareBuildJobBuilder {
                 cpsScm {
                     scm {
                         git {
-                            branch(branch='master')
+                            branch('master')
                             remote {
-                                credentials(credentials='jenkins-github-ssh')
-                                github(ownerAndProject="xofym/BE-CI-Tools", protocol='ssh')
+                                credentials('jenkins-github-ssh')
+                                github("xofym/BE-CI-Tools", 'ssh', "github.com")
                             }
                             extensions {
                                 pathRestriction {
@@ -251,8 +251,8 @@ class FirmwareBuildJobBuilder {
                             }
                         }
                     }
-                    lightweight(lightweight = true)
-                    scriptPath(scriptPath = 'jenkins_pipelines/docker_fw_build/Jenkinsfile')
+                    lightweight(true)
+                    scriptPath('jenkins_pipelines/docker_fw_build/Jenkinsfile')
                 }
             }
         }
