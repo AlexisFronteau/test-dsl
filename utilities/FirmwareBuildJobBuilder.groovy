@@ -209,4 +209,46 @@ class FirmwareBuildJobBuilder {
             }
         }
     }
+
+    static void build_server_docker(dslFactory) {
+        description("Build docker image that will be used by CI")
+  
+        properties {
+            disableConcurrentBuilds {
+                abortPrevious(false)
+            }
+            
+            durabilityHint {
+                hint('PERFORMANCE_OPTIMIZED')
+            }
+            
+            pipelineTriggers {
+                triggers {
+                    githubPush()
+                }
+            }
+        }
+        
+        definition {
+            cpsScm {
+                scm {
+                    git {
+                        branch(branch='master')
+                        remote {
+                            credentials(credentials='jenkins-github-ssh')
+                            github(ownerAndProject="xofym/${repo_name}", protocol='ssh')
+                        }
+                        extensions {
+                            pathRestriction {
+                                includedRegions('jenkins_pipelines/docker_fw_build/.*\njenkins_slave_builder/.*')
+                                excludedRegions('')
+                            }
+                        }
+                    }
+                }
+                lightweight(lightweight = true)
+                scriptPath(scriptPath = 'jenkins_pipelines/docker_fw_build/Jenkinsfile')
+            }
+        }
+    }
 }
