@@ -23,7 +23,7 @@ def create_base_folder(dslFactory, dir) {
 
 create_base_folder(this, base_dir)
 
-FirmwareBuildJobBuilder.build_server_docker(this)
+FirmwareBuildJobBuilder.build_server_docker(this, base_dir)
 
 projects.multibranch.each { key, _ ->
 	projects.multibranch[key].each { job -> 
