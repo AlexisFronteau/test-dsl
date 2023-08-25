@@ -1,11 +1,20 @@
 {
 	"jobs": {
 		"build" : [
+			{ "path" : "AIO", "jobName" : "AIO_SDK", "repo" : "aio_fw", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2e_aio_camera" ]},
+			{ "path" : "AIO", "jobName" : "AIO_APP", "repo" : "aio_app", "launchAfterJob" : "AIO_DOCKER", "launchNightly": false },
+			{ "path" : "SIC", "jobName" : "SIC_SDK", "repo" : "sic_fw", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2l_ssc_camera" ]},
+			{ "path" : "SIC", "jobName" : "SIC_APP", "repo" : "sic_app", "launchAfterJob" : "SIC_DOCKER", "launchNightly": false },
 			{ "path" : "SOC", "jobName" : "SOC_SDK", "repo" : "soc_fw", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2l_soc_camera" ]},
-			{ "path" : "SOC", "jobName" : "SOC_APP", "repo" : "soc_app", "launchAfterJob" : "SOC_DOCKER", "launchNightly": false }
+			{ "path" : "SOC", "jobName" : "SOC_APP", "repo" : "soc_app", "launchAfterJob" : "SOC_DOCKER", "launchNightly": false },
+			{ "path" : "VADDON", "jobName" : "VADDON_SDK", "repo" : "vaddon_fw", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "vaddon", "sochip_v3s", "licheepi_zero" ]},
+			{ "path" : "VADDON", "jobName" : "VADDON_APP", "repo" : "vaddon_app", "launchAfterJob" : "VADDON_DOCKER", "launchNightly": false }
 		],
 		"dockersdk" : [
-			{ "path" : "SOC", "jobName" : "SOC_DOCKER", "repo" : "soc_fw", "launchAfterJob" : "SOC_SDK", "launchNightly": false, "hasDefaultParams": false }
+			{ "path" : "AIO", "jobName" : "AIO_DOCKER", "repo" : "aio_fw", "launchAfterJob" : "AIO_SDK", "launchNightly": false, "hasDefaultParams": false },
+			{ "path" : "SIC", "jobName" : "SIC_DOCKER", "repo" : "sic_fw", "launchAfterJob" : "SIC_SDK", "launchNightly": false, "hasDefaultParams": false },
+			{ "path" : "SOC", "jobName" : "SOC_DOCKER", "repo" : "soc_fw", "launchAfterJob" : "SOC_SDK", "launchNightly": false, "hasDefaultParams": false },
+			{ "path" : "VADDON", "jobName" : "VADDON_DOCKER", "repo" : "vaddon_fw", "launchAfterJob" : "VADDON_SDK", "launchNightly": false, "hasDefaultParams": false }
 		]
 	},
 	"multibranch": {
