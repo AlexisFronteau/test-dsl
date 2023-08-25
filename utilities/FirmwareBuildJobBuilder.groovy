@@ -210,7 +210,7 @@ class FirmwareBuildJobBuilder {
         }
     }
 
-    static void build_server_docker(dslFactory, dirpath) {
+    static void generate_build_server_docker(dslFactory, dirpath) {
         dslFactory.folder(dirpath)
 
         def job = dslFactory.pipelineJob(dirpath + '/BUILD-SERVER-DOCKER')
@@ -218,6 +218,8 @@ class FirmwareBuildJobBuilder {
         job.with {
             description("Build docker image that will be used by CI")
     
+            disabled(true)
+            
             properties {
                 disableConcurrentBuilds {
                     abortPrevious(false)
