@@ -210,44 +210,50 @@ class FirmwareBuildJobBuilder {
         }
     }
 
-    static void build_server_docker(dslFactory) {
-        description("Build docker image that will be used by CI")
-  
-        properties {
-            disableConcurrentBuilds {
-                abortPrevious(false)
-            }
-            
-            durabilityHint {
-                hint('PERFORMANCE_OPTIMIZED')
-            }
-            
-            pipelineTriggers {
-                triggers {
-                    githubPush()
+    static void build_server_docker(dslFactory, dirpath) {
+        dslFactory.folder(dirpath)
+
+        def job = dslFactory.pipelineJob(dirpath + '/BUILD-SERVER-DOCKER')
+
+        job.with {
+            description("Build docker image that will be used by CI")
+    
+            properties {
+                disableConcurrentBuilds {
+                    abortPrevious(false)
+                }
+                
+                durabilityHint {
+                    hint('PERFORMANCE_OPTIMIZED')
+                }
+                
+                pipelineTriggers {
+                    triggers {
+                        githubPush()
+                    }
                 }
             }
-        }
-        
-        definition {
-            cpsScm {
-                scm {
-                    git {
-                        branch(branch='master')
-                        remote {
-                            credentials(credentials='jenkins-github-ssh')
-                            github(ownerAndProject="xofym/BE-CI-Tools", protocol='ssh')
-                        }
-                        extensions {
-                            pathRestriction {
-                                includedRegions('jenkins_pipelines/docker_fw_build/.*\njenkins_slave_builder/.*')
-                                excludedRegions('')
+            
+            definition {
+                cpsScm {
+                    scm {
+                        git {
+                            branch(branch='master')
+                            remote {
+                                credentials(credentials='jenkins-github-ssh')
+                                github(ownerAndProject="xofym/BE-CI-Tools", protocol='ssh')
+                            }
+                            extensions {
+                                pathRestriction {
+                                    includedRegions('jenkins_pipelines/docker_fw_build/.*\njenkins_slave_builder/.*')
+                                    excludedRegions('')
+                                }
                             }
                         }
                     }
+                    lightweight(lightweight = true)
+                    scriptPath(scriptPath = 'jenkins_pipelines/docker_fw_build/Jenkinsfile')
                 }
-                lightweight(lightweight = true)
-                scriptPath(scriptPath = 'jenkins_pipelines/docker_fw_build/Jenkinsfile')
             }
         }
     }
