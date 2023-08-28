@@ -74,8 +74,6 @@ class FirmwareBuildJobBuilder {
                     throw new Exception("Additional param not exists in list - need to had it")
                 }
 
-                dslFactory.out.println(paramName)
-                dslFactory.out.println(param_list.additional[paramName])
                 m_lParamsList[paramName] = param_list.additional[paramName]
 
                 if (paramName == "PLATFORM") {
