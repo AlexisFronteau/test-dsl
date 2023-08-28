@@ -64,6 +64,8 @@ class FirmwareBuildJobBuilder {
         // Set FEATURE and BASE_BRANCH as default parameters 
         if (m_bHasDefaultParams) {
             param_list.default.each { param->
+                dslFactory.out.println(param)
+                dslFactory.out.println(param_list[param])
                 m_lParamsList[param] = param_list[param]
             }
         }
