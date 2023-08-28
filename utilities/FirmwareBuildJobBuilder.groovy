@@ -63,10 +63,8 @@ class FirmwareBuildJobBuilder {
         
         // Set FEATURE and BASE_BRANCH as default parameters 
         if (m_bHasDefaultParams) {
-            param_list.default.each { param->
-                dslFactory.out.println(param)
-                dslFactory.out.println(param_list[param])
-                m_lParamsList[param] = param_list[param]
+            param_list.default.each { key, value->
+                m_lParamsList[key] = value
             }
         }
 
@@ -75,7 +73,9 @@ class FirmwareBuildJobBuilder {
                 if (!param_list.additional.keySet().contains(paramName)) {
                     throw new Exception("Additional param not exists in list - need to had it")
                 }
-                 
+
+                dslFactory.out.println(paramName)
+                dslFactory.out.println(param_list.additional[paramName])
                 m_lParamsList[paramName] = param_list.additional[paramName]
 
                 if (paramName == "PLATFORM") {
