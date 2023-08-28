@@ -59,7 +59,7 @@ class FirmwareBuildJobBuilder {
             m_sDefaultBaseBranch = json.baseBranch
         }
 
-        param_list = jsonSlurper.parse(new File('../job_parameters.json'))
+        param_list = new JsonSlurper().parseText(readFileFromWorkspace('../job_parameters.json'))
         
         // Set FEATURE and BASE_BRANCH as default parameters 
         if (m_bHasDefaultParams) {
