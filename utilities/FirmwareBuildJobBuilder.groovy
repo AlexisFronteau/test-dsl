@@ -24,7 +24,7 @@ class FirmwareBuildJobBuilder {
     boolean m_bHasDefaultParams = true
     def m_lParamsList = [:]
 
-    FirmwareBuildJobBuilder(base_dir, type, json) {
+    FirmwareBuildJobBuilder(dslFactory, base_dir, type, json) {
         m_sDirectory = base_dir
         if (json.keySet().contains('path')) {
             m_sDirectory += ('/' + json.path)
@@ -59,7 +59,7 @@ class FirmwareBuildJobBuilder {
             m_sDefaultBaseBranch = json.baseBranch
         }
 
-        param_list = new JsonSlurper().parseText(readFileFromWorkspace('../job_parameters.json'))
+        param_list = new JsonSlurper().parseText(dslFactory.readFileFromWorkspace('../job_parameters.json'))
         
         // Set FEATURE and BASE_BRANCH as default parameters 
         if (m_bHasDefaultParams) {
