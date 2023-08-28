@@ -7,12 +7,12 @@ import groovy.json.JsonSlurper
 
 class FirmwareBuildJobBuilder {
 
-    static def PARAMS_LIST = [
-        "FULL_BUILD": [ type: "boolean", defaultValue: false, description: "Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware" ],
-        "FEATURE": [ type: "string", defaultValue: "None", description: "The feature (branch) to select if it exists" ],
-        "BASE_BRANCH": [ type: "string", defaultValue: "master", description: "The branch on which to base the build" ],
-        "PLATFORM": [ type: "string", defaultValue: "None", description: "The platform to be built" ]
-    ]
+    // static def PARAMS_LIST = [
+    //     "FULL_BUILD": [ type: "boolean", defaultValue: false, description: "Check to clean whole project before building. Otherwise it will only rebuild the applicative part of the firmware" ],
+    //     "FEATURE": [ type: "string", defaultValue: "None", description: "The feature (branch) to select if it exists" ],
+    //     "BASE_BRANCH": [ type: "string", defaultValue: "master", description: "The branch on which to base the build" ],
+    //     "PLATFORM": [ type: "string", defaultValue: "None", description: "The platform to be built" ]
+    // ]
 
     String m_sDirectory = ''
     String m_sJobName = ''
@@ -58,20 +58,23 @@ class FirmwareBuildJobBuilder {
         if (json.keySet().contains('baseBranch')) {
             m_sDefaultBaseBranch = json.baseBranch
         }
+
+        param_list = jsonSlurper.parse(new File('../job_parameters.json'))
         
         // Set FEATURE and BASE_BRANCH as default parameters 
         if (m_bHasDefaultParams) {
-            m_lParamsList.FEATURE = PARAMS_LIST.FEATURE
-            m_lParamsList.BASE_BRANCH = PARAMS_LIST.BASE_BRANCH
+            param_list.default.each { param->
+                m_lParamsList[param] = param_list[param]
+            }
         }
 
         if (json.keySet().contains('additionalParams')) {
             json.additionalParams.each { paramName ->
-                if (!PARAMS_LIST.keySet().contains(paramName)) {
+                if (!param_list.additional.keySet().contains(paramName)) {
                     throw new Exception("Additional param not exists in list - need to had it")
                 }
                  
-                m_lParamsList[paramName] = PARAMS_LIST[paramName]
+                m_lParamsList[paramName] = param_list.additional[paramName]
 
                 if (paramName == "PLATFORM") {
                     if (json.keySet().contains('platformParam')) {
