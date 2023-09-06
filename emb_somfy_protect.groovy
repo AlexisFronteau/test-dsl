@@ -2,9 +2,10 @@ import utilities.MultibranchJobBuilder
 import utilities.FirmwareBuildJobBuilder
 import groovy.json.JsonSlurper
 
-base_dir = 'BE/EMB'
 
 def projects = new JsonSlurper().parseText(readFileFromWorkspace('projectDescription.json'))
+
+base_dir = projects.baseDirectory
 
 def create_base_folder(dslFactory, dir) {
 	String[] subdirs = dir.split("/")

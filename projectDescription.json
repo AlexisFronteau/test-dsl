@@ -1,84 +1,85 @@
 {
-	"jobs": {
-		"build" : [
-			{ "repo" : "aio_fw", "path" : "AIO", "jobName" : "AIO_SDK", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2e_aio_camera" ]},
-			{ "repo" : "aio_app", "path" : "AIO", "launchAfterJob" : "AIO_DOCKER", "launchNightly": false },
-			{ "repo" : "sic_fw", "path" : "SIC", "jobName" : "SIC_SDK", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2l_ssc_camera" ]},
-			{ "repo" : "sic_app", "path" : "SIC", "launchAfterJob" : "SIC_DOCKER", "launchNightly": false },
-			{ "repo" : "soc_fw", "path" : "SOC", "jobName" : "SOC_SDK", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2l_soc_camera" ]},
-			{ "repo" : "soc_app", "path" : "SOC", "launchAfterJob" : "SOC_DOCKER", "launchNightly": false },
-			{ "repo" : "vaddon_fw", "path" : "VADDON", "jobName" : "VADDON_SDK", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "vaddon", "sochip_v3s", "licheepi_zero" ]},
-			{ "repo" : "vaddon_app", "path" : "VADDON", "launchAfterJob" : "VADDON_DOCKER", "launchNightly": false },
-			{ "repo" : "doorlock_fw", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_gateway_espressif_fw", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_gateway_nordic_fw", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_reader_fw", "path" : "DOORLOCK" },
-			{ "repo" : "intellitag_fw", "path" : "INTELLITAG" },
-			{ "repo" : "sm2p_intellitag_fw", "path" : "INTELLITAG" },
-			{ "repo" : "sha_devices_libraries", "path" : "INTELLITAG" },
-			{ "repo" : "msc_fw", "path" : "MSC" }
-		],
-		"dockersdk" : [
-			{ "repo" : "aio_fw", "path" : "AIO", "jobName" : "AIO_DOCKER", "launchAfterJob" : "AIO_SDK", "launchNightly": false, "hasDefaultParams": false },
-			{ "repo" : "sic_fw", "path" : "SIC", "jobName" : "SIC_DOCKER", "launchAfterJob" : "SIC_SDK", "launchNightly": false, "hasDefaultParams": false },
-			{ "repo" : "soc_fw", "path" : "SOC", "jobName" : "SOC_DOCKER", "launchAfterJob" : "SOC_SDK", "launchNightly": false, "hasDefaultParams": false },
-			{ "repo" : "vaddon_fw", "path" : "VADDON", "jobName" : "VADDON_DOCKER", "launchAfterJob" : "VADDON_SDK", "launchNightly": false, "hasDefaultParams": false }
-		],
-		"unit-tests" : [
-			{ "repo" : "doorlock_reader_fw", "path" : "DOORLOCK", "jobName" : "DORLOOCK_READER_UT" },
-			{ "repo" : "sp_cam", "path" : "LIBS", "jobName" : "SP_CAM_UT" }
-		]
-	},
-	"multibranch": {
-		"build": [
-			{ "repo" : "aio_fw", "path" : "AIO" },
-			{ "repo" : "aio_app", "path" : "AIO" },
-			{ "repo" : "intellitag_fw", "path" : "INTELLITAG" },
-			{ "repo" : "sm2p_intellitag_fw", "path" : "INTELLITAG" },
-			{ "repo" : "sm2p_sensors_sw", "path" : "INTELLITAG" },
-			{ "repo" : "sha_devices_libraries", "path" : "INTELLITAG" },
-			{ "repo" : "sic_fw", "path" : "SIC" },
-			{ "repo" : "sic_app", "path" : "SIC" },
-			{ "repo" : "soc_fw", "path" : "SOC" },
-			{ "repo" : "soc_app", "path" : "SOC" },
-			{ "repo" : "vaddon_fw", "path" : "VADDON" },
-			{ "repo" : "vaddon_app", "path" : "VADDON" },
-			{ "repo" : "doorlock_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_gateway_espressif_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_gateway_nordic_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_reader_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "Buzz-Plug-Firmware", "path" : "LINK" },
-			{ "repo" : "somfy-area-network", "path" : "LINK" },
-			{ "repo" : "link2_premium_app", "path" : "LINK" },
-			{ "repo" : "sp_automation", "path" : "LIBS" },
-			{ "repo" : "sp_cam", "path" : "LIBS" },
-			{ "repo" : "sp_data_model", "path" : "LIBS" },
-			{ "repo" : "sp_fw_hal", "path" : "LIBS" },
-			{ "repo" : "sp_security_system", "path" : "LIBS" },
-			{ "repo" : "sp_webrtc", "path" : "LIBS" },
-			{ "repo" : "wiced_common_components", "path" : "WICED" }
-		],
-		"clang-format": [
-			{ "repo" : "doorlock_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_gateway_espressif_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_gateway_nordic_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "doorlock_reader_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "intellitag_fw", "path" : "INTELLITAG" },
-			{ "repo" : "sha_devices_libraries", "path" : "INTELLITAG" },
-			{ "repo" : "link2_premium_app", "path" : "LINK" },
-			{ "repo" : "somfy-area-network", "path" : "LINK" },
-			{ "repo" : "sp_automation", "path" : "LIBS" },
-			{ "repo" : "sp_webrtc", "path" : "LIBS" }
-		],
-		"unit-tests": [
-			{ "repo" : "doorlock_reader_sdk", "path" : "DOORLOCK" },
-			{ "repo" : "somfy-area-network", "path" : "LINK" },
-			{ "repo" : "link2_premium_app", "path" : "LINK" },
-			{ "repo" : "sp_automation", "path" : "LIBS" },
-			{ "repo" : "sp_cam", "path" : "LIBS" },
-			{ "repo" : "sp_data_model", "path" : "LIBS" },
-			{ "repo" : "sp_fw_hal", "path" : "LIBS" },
-			{ "repo" : "wiced_common_components", "path" : "WICED" }
-		]
-	}
+    "baseDirectory": "BE/EMB",
+    "jobs": {
+        "build" : [
+            { "repo" : "aio_fw", "path" : "AIO", "jobName" : "AIO_SDK", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2e_aio_camera" ]},
+            { "repo" : "aio_app", "path" : "AIO", "launchAfterJob" : "AIO_DOCKER", "launchNightly": false },
+            { "repo" : "sic_fw", "path" : "SIC", "jobName" : "SIC_SDK", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2l_ssc_camera" ]},
+            { "repo" : "sic_app", "path" : "SIC", "launchAfterJob" : "SIC_DOCKER", "launchNightly": false },
+            { "repo" : "soc_fw", "path" : "SOC", "jobName" : "SOC_SDK", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "s2l_soc_camera" ]},
+            { "repo" : "soc_app", "path" : "SOC", "launchAfterJob" : "SOC_DOCKER", "launchNightly": false },
+            { "repo" : "vaddon_fw", "path" : "VADDON", "jobName" : "VADDON_SDK", "additionalParams" : [ "FULL_BUILD", "PLATFORM" ], "platformParam": [ "vaddon", "sochip_v3s", "licheepi_zero" ]},
+            { "repo" : "vaddon_app", "path" : "VADDON", "launchAfterJob" : "VADDON_DOCKER", "launchNightly": false },
+            { "repo" : "doorlock_fw", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_gateway_espressif_fw", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_gateway_nordic_fw", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_reader_fw", "path" : "DOORLOCK" },
+            { "repo" : "intellitag_fw", "path" : "INTELLITAG" },
+            { "repo" : "sm2p_intellitag_fw", "path" : "INTELLITAG" },
+            { "repo" : "sha_devices_libraries", "path" : "INTELLITAG" },
+            { "repo" : "msc_fw", "path" : "MSC" }
+        ],
+        "dockersdk" : [
+            { "repo" : "aio_fw", "path" : "AIO", "jobName" : "AIO_DOCKER", "launchAfterJob" : "AIO_SDK", "launchNightly": false, "hasDefaultParams": false },
+            { "repo" : "sic_fw", "path" : "SIC", "jobName" : "SIC_DOCKER", "launchAfterJob" : "SIC_SDK", "launchNightly": false, "hasDefaultParams": false },
+            { "repo" : "soc_fw", "path" : "SOC", "jobName" : "SOC_DOCKER", "launchAfterJob" : "SOC_SDK", "launchNightly": false, "hasDefaultParams": false },
+            { "repo" : "vaddon_fw", "path" : "VADDON", "jobName" : "VADDON_DOCKER", "launchAfterJob" : "VADDON_SDK", "launchNightly": false, "hasDefaultParams": false }
+        ],
+        "unit-tests" : [
+            { "repo" : "doorlock_reader_fw", "path" : "DOORLOCK", "jobName" : "DOORLOCK_READER_UT" },
+            { "repo" : "sp_cam", "path" : "LIBS", "jobName" : "SP_CAM_UT" }
+        ]
+    },
+    "multibranch": {
+        "build": [
+            { "repo" : "aio_fw", "path" : "AIO" },
+            { "repo" : "aio_app", "path" : "AIO" },
+            { "repo" : "intellitag_fw", "path" : "INTELLITAG" },
+            { "repo" : "sm2p_intellitag_fw", "path" : "INTELLITAG" },
+            { "repo" : "sm2p_sensors_sw", "path" : "INTELLITAG" },
+            { "repo" : "sha_devices_libraries", "path" : "INTELLITAG" },
+            { "repo" : "sic_fw", "path" : "SIC" },
+            { "repo" : "sic_app", "path" : "SIC" },
+            { "repo" : "soc_fw", "path" : "SOC" },
+            { "repo" : "soc_app", "path" : "SOC" },
+            { "repo" : "vaddon_fw", "path" : "VADDON" },
+            { "repo" : "vaddon_app", "path" : "VADDON" },
+            { "repo" : "doorlock_sdk", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_gateway_espressif_sdk", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_gateway_nordic_sdk", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_reader_sdk", "path" : "DOORLOCK" },
+            { "repo" : "Buzz-Plug-Firmware", "path" : "LINK" },
+            { "repo" : "somfy-area-network", "path" : "LINK" },
+            { "repo" : "link2_premium_app", "path" : "LINK" },
+            { "repo" : "sp_automation", "path" : "LIBS" },
+            { "repo" : "sp_cam", "path" : "LIBS" },
+            { "repo" : "sp_data_model", "path" : "LIBS" },
+            { "repo" : "sp_fw_hal", "path" : "LIBS" },
+            { "repo" : "sp_security_system", "path" : "LIBS" },
+            { "repo" : "sp_webrtc", "path" : "LIBS" },
+            { "repo" : "wiced_common_components", "path" : "WICED" }
+        ],
+        "unit-tests": [
+            { "repo" : "doorlock_reader_sdk", "path" : "DOORLOCK" },
+            { "repo" : "somfy-area-network", "path" : "LINK" },
+            { "repo" : "link2_premium_app", "path" : "LINK" },
+            { "repo" : "sp_automation", "path" : "LIBS" },
+            { "repo" : "sp_cam", "path" : "LIBS" },
+            { "repo" : "sp_data_model", "path" : "LIBS" },
+            { "repo" : "sp_fw_hal", "path" : "LIBS" },
+            { "repo" : "wiced_common_components", "path" : "WICED" }
+        ],
+        "clang-format": [
+            { "repo" : "doorlock_sdk", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_gateway_espressif_sdk", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_gateway_nordic_sdk", "path" : "DOORLOCK" },
+            { "repo" : "doorlock_reader_sdk", "path" : "DOORLOCK" },
+            { "repo" : "intellitag_fw", "path" : "INTELLITAG" },
+            { "repo" : "sha_devices_libraries", "path" : "INTELLITAG" },
+            { "repo" : "link2_premium_app", "path" : "LINK" },
+            { "repo" : "somfy-area-network", "path" : "LINK" },
+            { "repo" : "sp_automation", "path" : "LIBS" },
+            { "repo" : "sp_webrtc", "path" : "LIBS" }
+        ]
+    }
 }
